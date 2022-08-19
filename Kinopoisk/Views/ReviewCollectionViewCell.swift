@@ -1,0 +1,160 @@
+//
+//  ReviewCollectionViewCell.swift
+//  Kinopoisk
+//
+//  Created by Наталья Шарапова on 21.05.2022.
+//
+
+import UIKit
+
+enum Rating: String {
+    case NEGATIVE
+    case POSITIVE
+    case NEUTRAL
+}
+
+class ReviewCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Properties
+    
+    static let identifier = "ReviewCollectionViewCell"
+    
+    private let nameLabel: UILabel = {
+        
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 14)
+        label.clipsToBounds = true
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.minimumScaleFactor = 0.8
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let dateLabel: UILabel = {
+        
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.clipsToBounds = true
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let titleLabel: UILabel = {
+        
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 12)
+        label.clipsToBounds = true
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.clipsToBounds = true
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let ratingLabel: UILabel = {
+        
+        let label = UILabel()
+        label.layer.cornerRadius = 4
+        label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.layer.shadowOffset = .zero
+        self.layer.shadowColor = UIColor.orange.cgColor
+        self.layer.shadowRadius = 5;
+        self.layer.shadowOpacity = 1
+        self.clipsToBounds = false
+        self.layer.masksToBounds = false
+        self.layer.backgroundColor = UIColor.black.cgColor
+        
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(dateLabel)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(ratingLabel)
+        
+        setConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Methods
+    
+    private func setConstraints() {
+        
+        nameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        
+        dateLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        dateLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
+        
+        titleLabel.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8).isActive = true
+        
+        descriptionLabel.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        descriptionLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 100).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
+        
+        ratingLabel.widthAnchor.constraint(equalToConstant: 5).isActive = true
+        ratingLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        ratingLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+    }
+    
+    func configure(with review: VideoReview) {
+        
+        guard let name = review.author,
+              let date = review.date,
+              let title = review.title,
+              let description = review.description,
+              let rating = review.type
+        else { return }
+        
+        nameLabel.text = name
+        dateLabel.text = date.formattedDate(from: date)
+        titleLabel.text = title
+        descriptionLabel.text = description
+        
+        switch rating {
+        
+        case Rating.NEGATIVE.rawValue:
+            ratingLabel.backgroundColor = .red
+            
+        case Rating.POSITIVE.rawValue:
+            ratingLabel.backgroundColor = .systemGreen
+            
+        case Rating.NEUTRAL.rawValue:
+            ratingLabel.backgroundColor = .systemGray
+        default:
+            break
+        }
+    }
+}
+
