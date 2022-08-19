@@ -15,12 +15,11 @@ class PosterCollectionViewCell: UICollectionViewCell {
     static let identifier = "PosterCollectionViewCell"
     
     private let posterImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 8)
-    private let ratingKinopoiskLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 12), cornerRadius: 4)
+    private let ratingKinopoiskLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 12), cornerRadius: 4, textAlignment: .center)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        ratingKinopoiskLabel.textAlignment = .center
+       
         ratingKinopoiskLabel.clipsToBounds = true
         posterImageView.clipsToBounds = true
         

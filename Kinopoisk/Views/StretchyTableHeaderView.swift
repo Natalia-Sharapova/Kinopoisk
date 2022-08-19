@@ -29,86 +29,20 @@ class StretchyTableHeaderView: UIView {
     
     private let downloadButton = UIButton(title: nil, cornerRadius: 20, backgroundColor: .systemGray, titleColor: .orange)
     private let playButton = UIButton(title: "▷ Смотреть", cornerRadius: 18, backgroundColor: .orange, titleColor: .black)
-    public let nameLabel = UILabel(textColor: .systemRed, font: .boldSystemFont(ofSize: 30), cornerRadius: 0, numberOfLines: 0)
-    public let ratingLabel = UILabel(textColor: .systemRed, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0)
-    public let originalNameLabel = UILabel(textColor: .systemRed, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0)
-    public let genreLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0)
-    public let seasonsLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0)
-    public let countryLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0)
-    
+    public let nameLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 30), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    public let ratingLabel = UILabel(textColor: .systemRed, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
+    public let originalNameLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    public let genreLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
+    public let seasonsLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    public let countryLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
+    public let filmLengthLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    public let ageLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    public let buttonsStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 20)
+    public let countryStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
+    public let ratingStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
+    public let genreStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
+    public let heroImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 0)
    
-    public let filmLengthLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = true
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .systemGray
-        return label
-    }()
-    
-    public let ageLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.text = "0"
-        label.translatesAutoresizingMaskIntoConstraints = true
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .systemGray
-        return label
-    }()
-    
-    public let buttonsStackView: UIStackView = {
-        
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .center
-        stackView.spacing = 20
-        return stackView
-    }()
-    
-    public let countryStackView: UIStackView = {
-        
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .center
-        stackView.spacing = 5
-        return stackView
-    }()
-    
-    public let ratingStackView: UIStackView = {
-        
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .center
-        stackView.spacing = 5
-        return stackView
-    }()
-    
-    public let genreStackView: UIStackView = {
-        
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .center
-        stackView.spacing = 5
-        return stackView
-    }()
-    
-    public let heroImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -117,16 +51,15 @@ class StretchyTableHeaderView: UIView {
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.textAlignment = .center
-        ratingLabel.textAlignment = .right
         ratingLabel.translatesAutoresizingMaskIntoConstraints = true
         originalNameLabel.translatesAutoresizingMaskIntoConstraints = true
-        originalNameLabel.textAlignment = .right
         originalNameLabel.translatesAutoresizingMaskIntoConstraints = true
-        seasonsLabel.textAlignment = .left
         seasonsLabel.translatesAutoresizingMaskIntoConstraints = true
-        countryLabel.textAlignment = .left
         countryLabel.translatesAutoresizingMaskIntoConstraints = true
+        filmLengthLabel.translatesAutoresizingMaskIntoConstraints = true
+        ageLabel.translatesAutoresizingMaskIntoConstraints = true
+        heroImageView.clipsToBounds = true
+        heroImageView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(containerView)
         containerView.addSubview(heroImageView)
@@ -196,11 +129,13 @@ class StretchyTableHeaderView: UIView {
     
     func setViewConstraints() {
         
+        // nameLabel Constraints
         nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150).isActive = true
         nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         
+        // StackView Constraints
         ratingStackView.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 40).isActive = true
         ratingStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         ratingStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 600).isActive = true
@@ -221,6 +156,7 @@ class StretchyTableHeaderView: UIView {
         buttonsStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 450).isActive = true
         buttonsStackView.heightAnchor.constraint(equalToConstant: 42).isActive = true
         
+        // Buttons Constraints
         playButton.widthAnchor.constraint(equalToConstant: 160).isActive = true
         playButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
@@ -246,7 +182,6 @@ class StretchyTableHeaderView: UIView {
         imageViewHeight = heroImageView.heightAnchor.constraint(equalTo: containerView.heightAnchor)
         imageViewHeight.isActive = true
     }
-    
     
     public func configure(with item: Item, serial: SerialResponse?) {
         

@@ -5,7 +5,7 @@
 //  Created by Наталья Шарапова on 03.08.2022.
 //
 
-import UIKit
+/*import UIKit
 
 extension UICollectionView {
     
@@ -16,4 +16,4 @@ extension UICollectionView {
         self.collectionViewLayout = collectionViewLayout
         self.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
     }
-}
+}*/

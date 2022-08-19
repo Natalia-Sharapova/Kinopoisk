@@ -20,21 +20,21 @@ class ActorCollectionViewTableViewCell: UITableViewCell {
     private var actors = [Actors]()
     
     weak var delegate: ActorCollectionViewTableViewCellDelegate?
-    var actorCollectionView = UICollectionView()
-    var layout = UICollectionViewFlowLayout()
-   
+    
+    private let actorCollectionView: UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 250, height: 90)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(ActorCollectionViewCell.self, forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
+        collectionView.contentInset = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        layout = UICollectionViewFlowLayout(scrollDirection: .horizontal, itemSize: CGSize(width: 250, height: 90), minimumInteritemSpacing: 15, minimumLineSpacing: 15)
-        
-     //   layout.scrollDirection = .horizontal
-       // layout.itemSize = CGSize(width: 250, height: 90)
-        
-        actorCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout, showsHorizontalScrollIndicator: false)
-        
-        actorCollectionView.register(ActorCollectionViewCell.self, forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
-        actorCollectionView.contentInset = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
         
         contentView.addSubview(actorCollectionView)
         actorCollectionView.delegate = self

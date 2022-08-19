@@ -18,24 +18,27 @@ class PosterCollectionViewTableViewCell: UITableViewCell {
     
     static let identifier = "PosterCollectionViewTableViewCell"
     private var items = [Item]()
-    var actorCollectionView = UICollectionView()
-    var layout = UICollectionViewFlowLayout()
+   
+    private let posterCollectionView: UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 140, height: 200)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
     
     weak var delegate: CollectionViewTableViewCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        layout = UICollectionViewFlowLayout(scrollDirection: .horizontal, itemSize: CGSize(width: 140, height: 200), minimumInteritemSpacing: 15, minimumLineSpacing: 15)
-        
-        actorCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout, showsHorizontalScrollIndicator: false)
-        
-        actorCollectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
-        actorCollectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
-        
-        contentView.addSubview(actorCollectionView)
-        actorCollectionView.delegate = self
-        actorCollectionView.dataSource = self
+        contentView.addSubview(posterCollectionView)
+        posterCollectionView.delegate = self
+        posterCollectionView.dataSource = self
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +50,7 @@ class PosterCollectionViewTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        actorCollectionView.frame = contentView.bounds
+        posterCollectionView.frame = contentView.bounds
     }
     
     // Download the item to the DataBase
@@ -68,7 +71,7 @@ class PosterCollectionViewTableViewCell: UITableViewCell {
         self.items = items
         
         DispatchQueue.main.async { [weak self] in
-            self?.actorCollectionView.reloadData()
+            self?.posterCollectionView.reloadData()
         }
     }
 }

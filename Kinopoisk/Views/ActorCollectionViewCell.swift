@@ -14,17 +14,15 @@ class ActorCollectionViewCell: UICollectionViewCell {
     static let identifier = "ActorCollectionViewCell"
     
     private let actorImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 8)
-    private let nameRuLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 14), cornerRadius: 0)
-    private let nameEnLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 0)
+    private let nameRuLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 14), cornerRadius: 0, textAlignment: .left)
+    private let nameEnLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 0, textAlignment: .left)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         actorImageView.clipsToBounds = true
-        nameRuLabel.textAlignment = .left
         nameRuLabel.clipsToBounds = true
         nameEnLabel.clipsToBounds = true
-        nameEnLabel.textAlignment = .left
         
         self.layer.shadowOffset = .zero
         self.layer.shadowColor = UIColor.orange.cgColor

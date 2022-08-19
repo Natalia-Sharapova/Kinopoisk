@@ -5,7 +5,7 @@
 //  Created by Наталья Шарапова on 03.08.2022.
 //
 
-import UIKit
+/*import UIKit
 
 extension UICollectionViewFlowLayout {
     
@@ -17,4 +17,4 @@ extension UICollectionViewFlowLayout {
         self.minimumInteritemSpacing = minimumInteritemSpacing
         self.minimumLineSpacing = minimumLineSpacing
     }
-}
+}*/

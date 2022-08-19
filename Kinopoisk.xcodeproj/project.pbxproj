@@ -36,6 +36,7 @@
 		9B7D33E0282D805B00F60220 /* TrailerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D33DF282D805B00F60220 /* TrailerViewModel.swift */; };
 		9B835B9A283A82EF00FEFD9A /* RatingKinipoiskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B835B99283A82EF00FEFD9A /* RatingKinipoiskTableViewCell.swift */; };
 		9B8503AB284CA2B500D6580C /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8503AA284CA2B500D6580C /* DataPersistenceManager.swift */; };
+		9B894A0C28AFA56E0033B5EB /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B894A0B28AFA56E0033B5EB /* UIStackView+Extension.swift */; };
 		9B9BB47E289A860E0076439C /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB47D289A860E0076439C /* UIImageView+Extension.swift */; };
 		9B9BB481289A8FB10076439C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB480289A8FB10076439C /* UILabel+Extension.swift */; };
 		9B9BB483289A944D0076439C /* ActorCollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB482289A944D0076439C /* ActorCollectionViewCell+Extension.swift */; };
@@ -90,6 +91,7 @@
 		9B7D33DF282D805B00F60220 /* TrailerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerViewModel.swift; sourceTree = "<group>"; };
 		9B835B99283A82EF00FEFD9A /* RatingKinipoiskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingKinipoiskTableViewCell.swift; sourceTree = "<group>"; };
 		9B8503AA284CA2B500D6580C /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		9B894A0B28AFA56E0033B5EB /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		9B9BB47D289A860E0076439C /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		9B9BB480289A8FB10076439C /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		9B9BB482289A944D0076439C /* ActorCollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActorCollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				9B9BB484289AA4580076439C /* UICollectionViewFlowLayout+Extension.swift */,
 				9B9BB486289AA8B00076439C /* UICollectionView+Extension.swift */,
 				9B9BB488289AB3B50076439C /* UIButton+Extension.swift */,
+				9B894A0B28AFA56E0033B5EB /* UIStackView+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				9BC4744A28377E84002D50E2 /* ActorCollectionViewTableViewCell.swift in Sources */,
 				9B9BB485289AA4580076439C /* UICollectionViewFlowLayout+Extension.swift in Sources */,
 				9B835B9A283A82EF00FEFD9A /* RatingKinipoiskTableViewCell.swift in Sources */,
+				9B894A0C28AFA56E0033B5EB /* UIStackView+Extension.swift in Sources */,
 				9B2F7D11284F7C77000BF9A7 /* Model.xcdatamodeld in Sources */,
 				9BD3F627282591DD00FB542A /* PosterCollectionViewTableViewCell.swift in Sources */,
 				9BD3F6222825890600FB542A /* DownloadsViewController.swift in Sources */,
