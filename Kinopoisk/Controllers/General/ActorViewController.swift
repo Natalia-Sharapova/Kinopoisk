@@ -55,7 +55,7 @@ class ActorViewController: UIViewController {
         
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ActorsFilmTableViewCell.self, forCellReuseIdentifier: ActorsFilmTableViewCell.identifier)
+        tableView.register(ActorsFilmTableViewCell.self, forCellReuseIdentifier: Identifier.actorsFilmTableViewCell.rawValue)
         return tableView
     }()
     

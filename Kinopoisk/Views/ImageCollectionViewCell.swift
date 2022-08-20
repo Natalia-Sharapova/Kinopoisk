@@ -11,9 +11,6 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    
-    static let identifier = "ImageCollectionViewCell"
-    
     private let posterImageView: UIImageView = {
         
         let imageView = UIImageView()

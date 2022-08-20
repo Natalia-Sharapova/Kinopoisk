@@ -15,19 +15,16 @@ protocol ActorCollectionViewTableViewCellDelegate: AnyObject {
 class ActorCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    
-    static let identifier = "ActorCollectionViewTableViewCell"
     private var actors = [Actors]()
     
     weak var delegate: ActorCollectionViewTableViewCellDelegate?
-    
     private let actorCollectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 250, height: 90)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(ActorCollectionViewCell.self, forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
+        collectionView.register(ActorCollectionViewCell.self, forCellWithReuseIdentifier: Identifier.actorCollectionViewCell.rawValue)
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -72,7 +69,7 @@ extension ActorCollectionViewTableViewCell: UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = actorCollectionView.dequeueReusableCell(withReuseIdentifier: ActorCollectionViewCell.identifier, for: indexPath) as? ActorCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = actorCollectionView.dequeueReusableCell(withReuseIdentifier: Identifier.actorCollectionViewCell.rawValue, for: indexPath) as? ActorCollectionViewCell else { return UICollectionViewCell() }
         
         let actor = actors[indexPath.row]
         cell.configure(with: actor)

@@ -26,7 +26,7 @@ class SearchResultsViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        collectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
+        collectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier:Identifier.posterCollectionViewCell.rawValue)
         return collectionView
     }()
     
@@ -76,7 +76,7 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.posterCollectionViewCell.rawValue, for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell() }
         
         guard let model = (films[indexPath.row].posterUrlPreview != nil) ? films[indexPath.row].posterUrlPreview : films[indexPath.row].posterUrl else { return UICollectionViewCell() }
         

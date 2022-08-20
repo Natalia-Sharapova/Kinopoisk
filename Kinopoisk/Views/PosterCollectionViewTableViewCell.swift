@@ -15,8 +15,6 @@ protocol CollectionViewTableViewCellDelegate: AnyObject {
 class PosterCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    
-    static let identifier = "PosterCollectionViewTableViewCell"
     private var items = [Item]()
    
     private let posterCollectionView: UICollectionView = {
@@ -25,7 +23,7 @@ class PosterCollectionViewTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 140, height: 200)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: PosterCollectionViewCell.identifier)
+        collectionView.register(PosterCollectionViewCell.self, forCellWithReuseIdentifier: Identifier.posterCollectionViewCell.rawValue)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -85,12 +83,11 @@ extension PosterCollectionViewTableViewCell: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.posterCollectionViewTableViewCell.rawValue, for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell() }
         
         guard let model = (items[indexPath.row].posterUrlPreview != nil) ? items[indexPath.row].posterUrlPreview : items[indexPath.row].posterUrl else { return UICollectionViewCell() }
         
         // Configure the cell depends on the rating's type
-        
         if let rating = items[indexPath.row].ratingKinopoisk {
             cell.configure(with: model, ratingDouble: rating)
             

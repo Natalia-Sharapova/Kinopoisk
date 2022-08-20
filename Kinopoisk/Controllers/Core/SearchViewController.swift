@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     
     private let searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(PosterCollectionViewTableViewCell.self, forCellReuseIdentifier: PosterCollectionViewTableViewCell.identifier)
+        tableView.register(PosterCollectionViewTableViewCell.self, forCellReuseIdentifier: Identifier.posterCollectionViewTableViewCell.rawValue)
         
         return tableView
     }()
@@ -71,7 +71,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PosterCollectionViewTableViewCell.identifier, for: indexPath) as? PosterCollectionViewTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.posterCollectionViewTableViewCell.rawValue, for: indexPath) as? PosterCollectionViewTableViewCell else { return UITableViewCell() }
         
         cell.delegate = self
         

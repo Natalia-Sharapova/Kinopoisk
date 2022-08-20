@@ -10,9 +10,6 @@ import UIKit
 class RatingKinipoiskTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    
-    static let identifier = "RatingKinipoiskTableViewCell"
-    
     private var item: Item!
     
     private let ratingKinopoiskLabel: UILabel = {

@@ -10,17 +10,15 @@ import UIKit
 class ImageCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    
-    static let identifier = "ImageCollectionViewTableViewCell"
-    
     private var images = [VideoImages]()
+    
     private let imageCollectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 300, height: 180)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: Identifier.imageCollectionViewCell.rawValue)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -59,18 +57,15 @@ class ImageCollectionViewTableViewCell: UITableViewCell {
 extension ImageCollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: Identifier.imageCollectionViewCell.rawValue, for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         
         guard let model = images[indexPath.row].imageUrl else { return UICollectionViewCell() }
-        
         cell.configure(with: model)
-        
         return cell
     }
 }

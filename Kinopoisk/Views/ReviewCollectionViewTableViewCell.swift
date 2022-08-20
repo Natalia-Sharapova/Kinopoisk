@@ -16,8 +16,6 @@ class ReviewCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    static let identifier = "ReviewCollectionViewTableViewCell"
-    
     private var reviews = [VideoReview]()
     
     weak var delegate: ReviewCollectionViewTableViewCellDelegate?

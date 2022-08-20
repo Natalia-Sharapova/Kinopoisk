@@ -8,11 +8,24 @@
 import UIKit
 import SDWebImage
 
+enum Identifier: String {
+    case actorCollectionViewCell
+    case actorCollectionViewTableViewCell
+    case posterCollectionViewCell
+    case posterCollectionViewTableViewCell
+    case trailerCollectionViewCell
+    case trailerCollectionViewTableViewCell
+    case imageCollectionViewTableViewCell
+    case imageCollectionViewCell
+    case reviewCollectionViewTableViewCell
+    case reviewCollectionViewCell
+    case ratingKinipoiskTableViewCell
+    case actorsFilmTableViewCell
+}
+
 class ActorCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    static let identifier = "ActorCollectionViewCell"
-    
     private let actorImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 8)
     private let nameRuLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 14), cornerRadius: 0, textAlignment: .left)
     private let nameEnLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 0, textAlignment: .left)

@@ -10,9 +10,6 @@ import UIKit
 class TrailerCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    
-    static let identifier = "TrailerCollectionViewTableViewCell"
-    
     private var videos = [VideoKinopoisk]()
     
     private let trailerCollectionView: UICollectionView = {
@@ -21,7 +18,7 @@ class TrailerCollectionViewTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 300, height: 180)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(TrailerCollectionViewCell.self, forCellWithReuseIdentifier: TrailerCollectionViewCell.identifier)
+        collectionView.register(TrailerCollectionViewCell.self, forCellWithReuseIdentifier: Identifier.trailerCollectionViewCell.rawValue)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -33,7 +30,6 @@ class TrailerCollectionViewTableViewCell: UITableViewCell {
         contentView.addSubview(trailerCollectionView)
         trailerCollectionView.delegate = self
         trailerCollectionView.dataSource = self
-        
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +37,6 @@ class TrailerCollectionViewTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -62,13 +57,12 @@ class TrailerCollectionViewTableViewCell: UITableViewCell {
 extension TrailerCollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return videos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = trailerCollectionView.dequeueReusableCell(withReuseIdentifier: TrailerCollectionViewCell.identifier, for: indexPath) as? TrailerCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = trailerCollectionView.dequeueReusableCell(withReuseIdentifier: Identifier.trailerCollectionViewCell.rawValue, for: indexPath) as? TrailerCollectionViewCell else { return UICollectionViewCell() }
         
         let video = videos[indexPath.row]
         

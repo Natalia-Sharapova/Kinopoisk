@@ -8,7 +8,4 @@
 import UIKit
 
 class ActorsFilmTableViewCell: UITableViewCell {
-
-  static let identifier = "ActorsFilmTableViewCell"
-
 }

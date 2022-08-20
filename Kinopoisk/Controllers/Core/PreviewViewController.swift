@@ -25,11 +25,11 @@ class PreviewViewController: UIViewController {
     private let previewTableView: UITableView = {
         
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(RatingKinipoiskTableViewCell.self, forCellReuseIdentifier: RatingKinipoiskTableViewCell.identifier)
-        tableView.register(TrailerCollectionViewTableViewCell.self, forCellReuseIdentifier: TrailerCollectionViewTableViewCell.identifier)
-        tableView.register(ActorCollectionViewTableViewCell.self, forCellReuseIdentifier: ActorCollectionViewTableViewCell.identifier)
-        tableView.register(ImageCollectionViewTableViewCell.self, forCellReuseIdentifier: ImageCollectionViewTableViewCell.identifier)
-        tableView.register(ReviewCollectionViewTableViewCell.self, forCellReuseIdentifier: ReviewCollectionViewTableViewCell.identifier)
+        tableView.register(RatingKinipoiskTableViewCell.self, forCellReuseIdentifier: Identifier.ratingKinipoiskTableViewCell.rawValue)
+        tableView.register(TrailerCollectionViewTableViewCell.self, forCellReuseIdentifier: Identifier.trailerCollectionViewTableViewCell.rawValue)
+        tableView.register(ActorCollectionViewTableViewCell.self, forCellReuseIdentifier: Identifier.actorCollectionViewTableViewCell.rawValue)
+        tableView.register(ImageCollectionViewTableViewCell.self, forCellReuseIdentifier: Identifier.imageCollectionViewTableViewCell.rawValue)
+        tableView.register(ReviewCollectionViewTableViewCell.self, forCellReuseIdentifier: Identifier.reviewCollectionViewTableViewCell.rawValue)
         return tableView
     }()
     
@@ -95,7 +95,7 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
         
         case Sections.RatingKinopoisk.rawValue:
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RatingKinipoiskTableViewCell.identifier, for: indexPath) as? RatingKinipoiskTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.ratingKinipoiskTableViewCell.rawValue, for: indexPath) as? RatingKinipoiskTableViewCell else { return UITableViewCell() }
             
             if let ratingDouble = item.ratingKinopoisk {
                
@@ -125,7 +125,7 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
       
         case Sections.Trailers.rawValue:
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TrailerCollectionViewTableViewCell.identifier, for: indexPath) as? TrailerCollectionViewTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.trailerCollectionViewTableViewCell.rawValue, for: indexPath) as? TrailerCollectionViewTableViewCell else { return UITableViewCell() }
            
             guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return UITableViewCell() }
             
@@ -146,7 +146,7 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
             
         case Sections.Actors.rawValue:
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ActorCollectionViewTableViewCell.identifier, for: indexPath) as? ActorCollectionViewTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.actorCollectionViewTableViewCell.rawValue, for: indexPath) as? ActorCollectionViewTableViewCell else { return UITableViewCell() }
            
             cell.delegate = self
             
@@ -165,7 +165,7 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
             
         case Sections.Images.rawValue:
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageCollectionViewTableViewCell.identifier, for: indexPath) as? ImageCollectionViewTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.imageCollectionViewTableViewCell.rawValue, for: indexPath) as? ImageCollectionViewTableViewCell else { return UITableViewCell() }
            
             guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return UITableViewCell() }
           
@@ -184,7 +184,7 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
          
         case Sections.Reviews.rawValue:
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewCollectionViewTableViewCell.identifier, for: indexPath) as? ReviewCollectionViewTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.reviewCollectionViewTableViewCell.rawValue, for: indexPath) as? ReviewCollectionViewTableViewCell else { return UITableViewCell() }
            
             cell.delegate = self
             guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return UITableViewCell() }

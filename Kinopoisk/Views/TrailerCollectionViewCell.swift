@@ -11,10 +11,7 @@ import WebKit
 class TrailerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    
-    static let identifier = "TrailerCollectionViewCell"
-    
-    private let webView: WKWebView = {
+  private let webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.contentMode = .scaleToFill
@@ -27,6 +24,8 @@ class TrailerCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.addSubview(webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.clipsToBounds = true
     }
     
     required init?(coder: NSCoder) {

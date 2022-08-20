@@ -11,9 +11,6 @@ import SDWebImage
 class PosterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Propeties
-    
-    static let identifier = "PosterCollectionViewCell"
-    
     private let posterImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 8)
     private let ratingKinopoiskLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 12), cornerRadius: 4, textAlignment: .center)
     

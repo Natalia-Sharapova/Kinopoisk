@@ -60,6 +60,10 @@ class StretchyTableHeaderView: UIView {
         ageLabel.translatesAutoresizingMaskIntoConstraints = true
         heroImageView.clipsToBounds = true
         heroImageView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        countryStackView.translatesAutoresizingMaskIntoConstraints = false
+        ratingStackView.translatesAutoresizingMaskIntoConstraints = false
+        genreStackView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(containerView)
         containerView.addSubview(heroImageView)
@@ -87,7 +91,6 @@ class StretchyTableHeaderView: UIView {
         }
         
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
