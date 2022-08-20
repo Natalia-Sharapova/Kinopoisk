@@ -16,7 +16,7 @@ class DownloadsViewController: UIViewController {
     private let tableView: UITableView = {
         
         let tableView = UITableView()
-        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
+        tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: Identifier.movieTableViewCell.rawValue)
         return tableView
     }()
     
@@ -76,7 +76,7 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as? MovieTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.movieTableViewCell.rawValue, for: indexPath) as? MovieTableViewCell
         
         else { return UITableViewCell () }
         

@@ -10,9 +10,6 @@ import UIKit
 class MovieTableViewCell: UITableViewCell {
     
     // MARK: - Propeties
-    
-    static let identifier = "MovieTableViewCell"
-    
     private let playButton: UIButton = {
         
         let button = UIButton()

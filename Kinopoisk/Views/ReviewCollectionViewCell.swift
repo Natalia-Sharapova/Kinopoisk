@@ -16,64 +16,12 @@ enum Rating: String {
 class ReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    
-    static let identifier = "ReviewCollectionViewCell"
-    
-    private let nameLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 14)
-        label.clipsToBounds = true
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        label.minimumScaleFactor = 0.8
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    private let dateLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
-        label.clipsToBounds = true
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let titleLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 12)
-        label.clipsToBounds = true
-        label.textAlignment = .left
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let descriptionLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
-        label.clipsToBounds = true
-        label.textAlignment = .left
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let ratingLabel: UILabel = {
-        
-        let label = UILabel()
-        label.layer.cornerRadius = 4
-        label.clipsToBounds = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
+    private let nameLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    private let dateLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    private let titleLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    private let descriptionLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    private let ratingLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 4, numberOfLines: 0, textAlignment: .left)
+  
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -101,6 +49,26 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     // MARK: - Methods
     
     private func setConstraints() {
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.minimumScaleFactor = 0.8
+        nameLabel.clipsToBounds = true
+        
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.minimumScaleFactor = 0.8
+        dateLabel.clipsToBounds = true
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.minimumScaleFactor = 0.8
+        titleLabel.clipsToBounds = true
+        
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.minimumScaleFactor = 0.8
+        descriptionLabel.clipsToBounds = true
+        
+        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingLabel.minimumScaleFactor = 0.8
+        ratingLabel.clipsToBounds = true
         
         nameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true

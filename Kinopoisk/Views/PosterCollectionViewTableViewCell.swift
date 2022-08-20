@@ -83,7 +83,7 @@ extension PosterCollectionViewTableViewCell: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.posterCollectionViewTableViewCell.rawValue, for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.posterCollectionViewCell.rawValue, for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell() }
         
         guard let model = (items[indexPath.row].posterUrlPreview != nil) ? items[indexPath.row].posterUrlPreview : items[indexPath.row].posterUrl else { return UICollectionViewCell() }
         

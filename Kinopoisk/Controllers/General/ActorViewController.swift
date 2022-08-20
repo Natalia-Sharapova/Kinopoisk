@@ -176,7 +176,7 @@ extension ActorViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActorsFilmTableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.actorsFilmTableViewCell.rawValue, for: indexPath)
         
         let name = films1.sorted()[indexPath.row]
         

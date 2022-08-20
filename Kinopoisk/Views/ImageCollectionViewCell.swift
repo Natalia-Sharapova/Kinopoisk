@@ -11,19 +11,13 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-    private let posterImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
+    private let posterImageView = UIImageView(contentMode: .scaleAspectFit, cornerRadius: 8)
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.addSubview(posterImageView)
+        posterImageView.clipsToBounds = true
     }
     
     required init?(coder: NSCoder) {
@@ -31,7 +25,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         

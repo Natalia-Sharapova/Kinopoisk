@@ -21,6 +21,7 @@ enum Identifier: String {
     case reviewCollectionViewCell
     case ratingKinipoiskTableViewCell
     case actorsFilmTableViewCell
+    case movieTableViewCell
 }
 
 class ActorCollectionViewCell: UICollectionViewCell {

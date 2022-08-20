@@ -63,7 +63,6 @@ class ReviewCollectionViewTableViewCell: UITableViewCell {
     }
 }
 // MARK: - Extensions
-
 extension ReviewCollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
