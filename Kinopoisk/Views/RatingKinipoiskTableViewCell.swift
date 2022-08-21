@@ -12,26 +12,8 @@ class RatingKinipoiskTableViewCell: UITableViewCell {
     // MARK: - Properties
     private var item: Item!
     
-    private let ratingKinopoiskLabel: UILabel = {
-        
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 60)
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
-        return label
-    }()
-    
-    private let ratingCountLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
-        label.textAlignment = .center
-        label.textColor = .systemGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let ratingKinopoiskLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 60), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let ratingCountLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 15), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -71,11 +53,15 @@ class RatingKinipoiskTableViewCell: UITableViewCell {
     }
     
     func configureRatingCount(with ratingCount: Int) {
-        
         ratingCountLabel.text = String(ratingCount) + " оценок"
     }
     
     private func setConstraints() {
+        
+        ratingKinopoiskLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingKinopoiskLabel.adjustsFontSizeToFitWidth = true
+        ratingKinopoiskLabel.minimumScaleFactor = 0.5
+        ratingCountLabel.translatesAutoresizingMaskIntoConstraints = false
         
         ratingKinopoiskLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
         ratingKinopoiskLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true

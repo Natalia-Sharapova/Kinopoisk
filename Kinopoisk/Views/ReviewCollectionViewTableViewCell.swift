@@ -27,7 +27,7 @@ class ReviewCollectionViewTableViewCell: UITableViewCell {
         
         layout.itemSize = CGSize(width: 300, height: 200)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(ReviewCollectionViewCell.self, forCellWithReuseIdentifier: ReviewCollectionViewCell.identifier)
+        collectionView.register(ReviewCollectionViewCell.self, forCellWithReuseIdentifier: Identifier.reviewCollectionViewCell.rawValue)
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
         layout.minimumInteritemSpacing = 15
         layout.minimumLineSpacing = 15
@@ -71,7 +71,7 @@ extension ReviewCollectionViewTableViewCell: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = reviewCollectionView.dequeueReusableCell(withReuseIdentifier: ReviewCollectionViewCell.identifier, for: indexPath) as? ReviewCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = reviewCollectionView.dequeueReusableCell(withReuseIdentifier: Identifier.reviewCollectionViewCell.rawValue, for: indexPath) as? ReviewCollectionViewCell else { return UICollectionViewCell() }
         
         let review = reviews[indexPath.row]
         cell.configure(with: review)

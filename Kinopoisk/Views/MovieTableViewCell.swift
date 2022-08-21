@@ -11,7 +11,6 @@ class MovieTableViewCell: UITableViewCell {
     
     // MARK: - Propeties
     private let playButton: UIButton = {
-        
         let button = UIButton()
         let image = UIImage(systemName: "play.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25))
         button.setImage(image, for: .normal)
@@ -21,26 +20,16 @@ class MovieTableViewCell: UITableViewCell {
     }()
     
     private let label: UILabel = {
-        
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.6
-        
         return label
     }()
     
-    private let posterImageView: UIImageView = {
+    private let posterImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 8)
         
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -58,6 +47,9 @@ class MovieTableViewCell: UITableViewCell {
     // MARK: - Methods
     
     private func applyConstrains() {
+        
+        posterImageView.translatesAutoresizingMaskIntoConstraints = false
+        posterImageView.clipsToBounds = true
         
         posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true

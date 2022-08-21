@@ -49,7 +49,6 @@ class TrailerViewController: UIViewController {
             nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
             nameLabel.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 15).isActive = true
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-      
     }
     
     func configure(with model: TrailerViewModel) {

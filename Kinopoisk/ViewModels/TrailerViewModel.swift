@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct TrailerViewModel {
+/*struct TrailerViewModel {
     
         let movieName: String
         let youtubeVideo: VideoElements
-    }
+    }*/

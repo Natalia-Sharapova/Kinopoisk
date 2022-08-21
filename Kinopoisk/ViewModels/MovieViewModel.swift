@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct MovieViewModel {
+/*struct MovieViewModel {
     
     let movieName: String
     let posterURL: String
-}
+}*/
 

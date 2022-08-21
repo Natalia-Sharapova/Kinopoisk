@@ -21,7 +21,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     private let titleLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     private let descriptionLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     private let ratingLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 4, numberOfLines: 0, textAlignment: .left)
-  
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -47,7 +47,6 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    
     private func setConstraints() {
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -70,59 +69,61 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         ratingLabel.minimumScaleFactor = 0.8
         ratingLabel.clipsToBounds = true
         
-        nameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        
-        dateLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        dateLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        dateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
-        
-        titleLabel.widthAnchor.constraint(equalToConstant: 280).isActive = true
-        titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8).isActive = true
-        
-        descriptionLabel.widthAnchor.constraint(equalToConstant: 280).isActive = true
-        descriptionLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 100).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
-        
-        ratingLabel.widthAnchor.constraint(equalToConstant: 5).isActive = true
-        ratingLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        ratingLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        NSLayoutConstraint.activate([
+            nameLabel.widthAnchor.constraint(equalToConstant: 200),
+            nameLabel.heightAnchor.constraint(equalToConstant: 20),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            
+            dateLabel.widthAnchor.constraint(equalToConstant: 200),
+            dateLabel.heightAnchor.constraint(equalToConstant: 15),
+            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            dateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            
+            titleLabel.widthAnchor.constraint(equalToConstant: 280),
+            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            titleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8),
+            
+            descriptionLabel.widthAnchor.constraint(equalToConstant: 280),
+            descriptionLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 100),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            
+            ratingLabel.widthAnchor.constraint(equalToConstant: 5),
+            ratingLabel.heightAnchor.constraint(equalToConstant: 40),
+            ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            ratingLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10)
+        ])
     }
-    
-    func configure(with review: VideoReview) {
         
-        guard let name = review.author,
-              let date = review.date,
-              let title = review.title,
-              let description = review.description,
-              let rating = review.type
-        else { return }
-        
-        nameLabel.text = name
-        dateLabel.text = date.formattedDate(from: date)
-        titleLabel.text = title
-        descriptionLabel.text = description
-        
-        switch rating {
-        
-        case Rating.NEGATIVE.rawValue:
-            ratingLabel.backgroundColor = .red
+        func configure(with review: VideoReview) {
             
-        case Rating.POSITIVE.rawValue:
-            ratingLabel.backgroundColor = .systemGreen
+            guard let name = review.author,
+                  let date = review.date,
+                  let title = review.title,
+                  let description = review.description,
+                  let rating = review.type
+            else { return }
             
-        case Rating.NEUTRAL.rawValue:
-            ratingLabel.backgroundColor = .systemGray
-        default:
-            break
+            nameLabel.text = name
+            dateLabel.text = date.formattedDate(from: date)
+            titleLabel.text = title
+            descriptionLabel.text = description
+            
+            switch rating {
+            
+            case Rating.NEGATIVE.rawValue:
+                ratingLabel.backgroundColor = .red
+                
+            case Rating.POSITIVE.rawValue:
+                ratingLabel.backgroundColor = .systemGreen
+                
+            case Rating.NEUTRAL.rawValue:
+                ratingLabel.backgroundColor = .systemGray
+            default:
+                break
+            }
         }
     }
-}
 
