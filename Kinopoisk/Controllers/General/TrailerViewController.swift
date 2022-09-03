@@ -51,11 +51,12 @@ class TrailerViewController: UIViewController {
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
     }
     
-    func configure(with model: TrailerViewModel) {
+   // func configure(with model: TrailerViewModel) {
+    func configure(with movieName: String, youtubeVideo: VideoElements) {
         
-        nameLabel.text = model.movieName
+        nameLabel.text = movieName
         
-        guard let url = URL(string: "https://www.youtube.com/embed/\(model.youtubeVideo.id.videoId)") else { return }
+        guard let url = URL(string: "https://www.youtube.com/embed/\(youtubeVideo.id.videoId)") else { return }
         
         webView.load(URLRequest(url: url))
     }

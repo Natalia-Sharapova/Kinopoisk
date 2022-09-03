@@ -46,7 +46,9 @@ class StretchyTableHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        downloadButton.setImage(UIImage(named: "save"), for: .normal)
+        setItems()
+        
+      /*  downloadButton.setImage(UIImage(named: "save"), for: .normal)
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +65,7 @@ class StretchyTableHeaderView: UIView {
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         countryStackView.translatesAutoresizingMaskIntoConstraints = false
         ratingStackView.translatesAutoresizingMaskIntoConstraints = false
-        genreStackView.translatesAutoresizingMaskIntoConstraints = false
+        genreStackView.translatesAutoresizingMaskIntoConstraints = false*/
         
         addSubview(containerView)
         containerView.addSubview(heroImageView)
@@ -186,6 +188,28 @@ class StretchyTableHeaderView: UIView {
         imageViewHeight.isActive = true
     }
     
+    func setItems() {
+    
+        downloadButton.setImage(UIImage(named: "save"), for: .normal)
+        downloadButton.translatesAutoresizingMaskIntoConstraints = false
+        downloadButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingLabel.translatesAutoresizingMaskIntoConstraints = true
+        originalNameLabel.translatesAutoresizingMaskIntoConstraints = true
+        originalNameLabel.translatesAutoresizingMaskIntoConstraints = true
+        seasonsLabel.translatesAutoresizingMaskIntoConstraints = true
+        countryLabel.translatesAutoresizingMaskIntoConstraints = true
+        filmLengthLabel.translatesAutoresizingMaskIntoConstraints = true
+        ageLabel.translatesAutoresizingMaskIntoConstraints = true
+        heroImageView.clipsToBounds = true
+        heroImageView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        countryStackView.translatesAutoresizingMaskIntoConstraints = false
+        ratingStackView.translatesAutoresizingMaskIntoConstraints = false
+        genreStackView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     public func configure(with item: Item, serial: SerialResponse?) {
         
         self.item = item
@@ -202,6 +226,8 @@ class StretchyTableHeaderView: UIView {
             filmLengthLabel.text = "-"
         }
         
+        // MARK: - Set the seasons depends on URL response
+        
         if let seasons = serial?.total {
             switch seasons {
             case 0:
@@ -216,6 +242,8 @@ class StretchyTableHeaderView: UIView {
         } else {
             seasonsLabel.text = nil
         }
+        
+       // MARK: - Set the rating depends on URL response
         
         if let rating = item.ratingKinopoisk {
             ratingLabel.text = String(format: "%.1f", rating) + ","
@@ -250,6 +278,8 @@ class StretchyTableHeaderView: UIView {
             }
         }
         
+        // MARK: - Set the genres depends on URL response
+        
         switch genres.count {
         case 1:
             let genre1 = genres[0].genre
@@ -277,6 +307,7 @@ class StretchyTableHeaderView: UIView {
             genreLabel.text = genre1 + ","
         }
         
+        // MARK: - Set the countries depends on URL response
         switch countries.count {
         case 1:
             let country1 = countries[0].country
@@ -302,6 +333,7 @@ class StretchyTableHeaderView: UIView {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        
         containerViewHeight.constant = scrollView.contentInset.top
         let offsetY = -(scrollView.contentOffset.y + scrollView.contentInset.top)
         containerView.clipsToBounds = offsetY <= 0

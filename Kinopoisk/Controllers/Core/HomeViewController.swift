@@ -223,9 +223,10 @@ extension HomeViewController: PlayButtonTappedDelegate {
             case .success(let videoElement):
                 
                 DispatchQueue.main.async {
+                    
                 let vc = TrailerViewController()
                 
-                vc.configure(with: TrailerViewModel(movieName: nameMovie, youtubeVideo: videoElement))
+                vc.configure(with: nameMovie, youtubeVideo: videoElement)
                 
                 self.navigationController?.pushViewController(vc, animated: true)
                 }

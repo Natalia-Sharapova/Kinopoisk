@@ -63,13 +63,13 @@ class MovieTableViewCell: UITableViewCell {
         playButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         playButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
-    
-    public func configure(with model: MovieViewModel) {
+  
+    public func configure(with movieName: String, posterURL: String) {
         
-        guard let url = URL(string: String(model.posterURL)) else { return }
+        guard let url = URL(string: String(posterURL)) else { return }
         
         posterImageView.sd_setImage(with: url)
-        label.text = model.movieName
+        label.text = movieName
     }
 }
 

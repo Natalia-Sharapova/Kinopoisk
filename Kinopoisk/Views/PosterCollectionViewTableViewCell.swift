@@ -55,6 +55,7 @@ class PosterCollectionViewTableViewCell: UITableViewCell {
     private func downloadItemAt(indexPath: IndexPath) {
         
         DataPersistenceManager.shared.downloadItemFith(model: items[indexPath.row]) { result in
+            
             switch result {
             case .success():
                 NotificationCenter.default.post(name: NSNotification.Name("Downloaded"), object: nil)
@@ -88,6 +89,7 @@ extension PosterCollectionViewTableViewCell: UICollectionViewDelegate, UICollect
         guard let model = (items[indexPath.row].posterUrlPreview != nil) ? items[indexPath.row].posterUrlPreview : items[indexPath.row].posterUrl else { return UICollectionViewCell() }
         
         // Configure the cell depends on the rating's type
+      
         if let rating = items[indexPath.row].ratingKinopoisk {
             cell.configure(with: model, ratingDouble: rating)
             

@@ -76,14 +76,14 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.movieTableViewCell.rawValue, for: indexPath) as? MovieTableViewCell
-        
-        else { return UITableViewCell () }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.movieTableViewCell.rawValue, for: indexPath) as? MovieTableViewCell else { return UITableViewCell () }
         
         let item = items[indexPath.row]
         
-        cell.configure(with: MovieViewModel(movieName: (item.nameRu ?? item.nameOriginal) ?? "Unknown name", posterURL: item.posterUrl ?? ""))
+        let movieName = item.nameRu ?? item.nameOriginal ?? "Unknown name"
+        let posterURL = item.posterUrl ?? ""
         
+        cell.configure(with: movieName, posterURL: posterURL)
         return cell
     }
     
@@ -133,10 +133,10 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
                 DispatchQueue.main.async { [weak self] in
                     let vc = TrailerViewController()
                     
-                    vc.configure(with: TrailerViewModel(movieName: nameMovie, youtubeVideo: videoElement))
+                    vc.configure(with: nameMovie, youtubeVideo: videoElement)
+                    //(with: TrailerViewModel(movieName: nameMovie, youtubeVideo: videoElement))
                     
                     self?.navigationController?.pushViewController(vc, animated: true)
-                    
                 }
             case .failure(let error):
                 print(#line, "Error", error.localizedDescription)

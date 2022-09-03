@@ -18,6 +18,7 @@ class ActorCollectionViewTableViewCell: UITableViewCell {
     private var actors = [Actors]()
     
     weak var delegate: ActorCollectionViewTableViewCellDelegate?
+    
     private let actorCollectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
