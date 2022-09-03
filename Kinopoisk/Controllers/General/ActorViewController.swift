@@ -14,7 +14,7 @@ class ActorViewController: UIViewController {
     
     private var films: [ActorsFilms] = []
     private var films1 = Set<String>()
-
+    
     private let actorView: UIView = {
         
         let view = UIView()
@@ -31,26 +31,6 @@ class ActorViewController: UIViewController {
         return view
     }()
     
-    private let actorImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 8
-        return imageView
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        return stackView
-    }()
-    
     private let tableView: UITableView = {
         
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -59,45 +39,29 @@ class ActorViewController: UIViewController {
         return tableView
     }()
     
-    private let nameLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font =  .boldSystemFont(ofSize: 30)
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.6
-        return label
-    }()
+    private let actorImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 8)
+    private lazy var stackView = UIStackView(axis: .vertical, distribution: .fill, alignment: .center, spacing: 8)
     
-    private let professionLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font =  .systemFont(ofSize: 15)
-        return label
-    }()
+    private let nameLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 30), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let professionLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 15), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let birthLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 15), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let ageLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 15), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
     
-    private let birthLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font =  .systemFont(ofSize: 15)
-        return label
-    }()
-    
-    private let ageLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font =  .systemFont(ofSize: 15)
-        return label
-    }()
-    
-    //MARK: - VC methods
+    //MARK: - ViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        actorImageView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        actorImageView.clipsToBounds = true
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.minimumScaleFactor = 0.6
     }
     
     override func viewDidLayoutSubviews() {
@@ -143,7 +107,7 @@ class ActorViewController: UIViewController {
     }
     
     func configure(with actor: ActorInformation) {
-      
+        
         guard let urlString = actor.posterUrl else { return }
         let url = URL(string: urlString)
         actorImageView.sd_setImage(with: url)
@@ -159,7 +123,7 @@ class ActorViewController: UIViewController {
         professionLabel.text = profession
         
         self.films = actor.films
-
+        
         for film in films {
             guard let name = film.nameRu else { return }
             films1.insert(name)
@@ -167,7 +131,7 @@ class ActorViewController: UIViewController {
     }
 }
 //MARK: - Extensions
-
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension ActorViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

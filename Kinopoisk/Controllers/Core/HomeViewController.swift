@@ -17,9 +17,11 @@ class HomeViewController: UIViewController {
         case Detectives = 4
     }
     
+    //MARK: - Properties
+    
     private var randomPopularMovie: Item?
-            var headerView: HeaderView?
-
+    var headerView: HeaderView?
+    
     private let homeTableView: UITableView = {
         
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -28,6 +30,9 @@ class HomeViewController: UIViewController {
     }()
     
     let sectionTitles: [String] = ["ТОП-20 лучших фильмов", "ТОП-20 популярных фильмов", "Рекомендуемые сериалы", "Ужасы", "Детективы"]
+    
+    
+    //MARK: - ViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +45,7 @@ class HomeViewController: UIViewController {
         headerView?.delegate = self
         
         homeTableView.tableHeaderView = headerView
-      
+        
         configureNavBar()
         configureHeaderView()
     }
@@ -51,20 +56,21 @@ class HomeViewController: UIViewController {
         homeTableView.frame = view.bounds
     }
     
-     func configureHeaderView() {
+    //MARK: - Methods
+    private func configureHeaderView() {
         
         APICaller.shared.getPopularFilms { [weak self] result in
             switch result {
             case .success(let items):
                 
                 self?.randomPopularMovie = items.randomElement()
-             
+                
                 guard let posterURL = self?.randomPopularMovie?.posterUrl ?? self?.randomPopularMovie?.posterUrlPreview else { return }
                 
                 self?.headerView?.configure(with: posterURL, randomPopularMovie: (self?.randomPopularMovie)!)
                 
             case .failure(let error):
-            print(String(describing: error))
+                print(String(describing: error))
             }
         }
     }
@@ -76,6 +82,9 @@ class HomeViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
     }
 }
+
+//MARK: - Extensions
+//MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -184,10 +193,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - CollectionViewTableViewCellDelegate
 extension HomeViewController: CollectionViewTableViewCellDelegate {
     
     func collectionViewCellDidTapCell(_ cell: PosterCollectionViewTableViewCell, with item: Item) {
-      
+        
         guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return }
         
         APICaller.shared.getSerialSeasonEpisode(with: id) { result in
@@ -199,18 +209,19 @@ extension HomeViewController: CollectionViewTableViewCellDelegate {
                     let vc = PreviewViewController()
                     vc.configure(with: item, serial: serialResponse)
                     self.navigationController?.pushViewController(vc, animated: true)
-            }
+                }
             case .failure(_):
                 DispatchQueue.main.async {
                     let vc = PreviewViewController()
                     vc.configure(with: item, serial: nil)
                     self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }
 }
-}
 
+//MARK: - PlayButtonTappedDelegate
 extension HomeViewController: PlayButtonTappedDelegate {
     
     func playButtonTappedWithDelegate(with item: Item) {
@@ -218,22 +229,22 @@ extension HomeViewController: PlayButtonTappedDelegate {
         guard let nameMovie = item.nameEn ?? item.nameOriginal else { return }
         
         APICaller.shared.getTrailer(with: nameMovie) { result in
-        
+            
             switch result {
             case .success(let videoElement):
                 
                 DispatchQueue.main.async {
                     
-                let vc = TrailerViewController()
-                
-                vc.configure(with: nameMovie, youtubeVideo: videoElement)
-                
-                self.navigationController?.pushViewController(vc, animated: true)
+                    let vc = TrailerViewController()
+                    
+                    vc.configure(with: nameMovie, youtubeVideo: videoElement)
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):
-                    print(#line, "Error", error.localizedDescription)
-                }
-                return
+                print("Error", error.localizedDescription)
             }
+            return
+        }
     }
 }

@@ -8,10 +8,12 @@
 import UIKit
 
 class MainTabBarViewController: UITabBarController {
-
+    
+    //MARK: - ViewController methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let vc1 = UINavigationController(rootViewController: HomeViewController())
         let vc2 = UINavigationController(rootViewController: MediaViewController())
         let vc3 = UINavigationController(rootViewController: SearchViewController())

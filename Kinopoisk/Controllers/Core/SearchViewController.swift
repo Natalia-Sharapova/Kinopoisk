@@ -8,13 +8,14 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    
     enum Sections: Int {
         case Random = 0
         case Films2022 = 1
         case Serials2022 = 2
     }
     
+    //MARK: - Properties
     private let searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(PosterCollectionViewTableViewCell.self, forCellReuseIdentifier: Identifier.posterCollectionViewTableViewCell.rawValue)
@@ -24,13 +25,15 @@ class SearchViewController: UIViewController {
     
     private let searchController: UISearchController = {
         
-    let controller = UISearchController(searchResultsController: SearchResultsViewController())
+        let controller = UISearchController(searchResultsController: SearchResultsViewController())
         controller.searchBar.placeholder = "Поиск по фильмам"
         controller.searchBar.searchBarStyle = .minimal
         return controller
     }()
     
     let sectionTitles: [String] = ["Случайный выбор", "Фильмы 2022 года", "Сериалы 2022 года"]
+    
+    //MARK: - ViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +59,10 @@ class SearchViewController: UIViewController {
         
         searchTableView.frame = view.bounds
     }
- 
 }
 
+//MARK: - Extensions
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -113,7 +117,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             break
         }
         return cell
-}
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
@@ -137,6 +141,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - UISearchResultsUpdating
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -146,8 +151,8 @@ extension SearchViewController: UISearchResultsUpdating {
         guard let query = searchBar.text,
               !query.trimmingCharacters(in: .whitespaces).isEmpty,
               query.trimmingCharacters(in: .whitespaces).count >= 2 else { return }
-    
-      guard let resultsController = searchController.searchResultsController as? SearchResultsViewController else { return }
+        
+        guard let resultsController = searchController.searchResultsController as? SearchResultsViewController else { return }
         
         resultsController.delegate = self
         
@@ -164,13 +169,14 @@ extension SearchViewController: UISearchResultsUpdating {
                 }
             }
         }
-}
+    }
 }
 
+//MARK: - CollectionViewTableViewCellDelegate
 extension SearchViewController: CollectionViewTableViewCellDelegate {
     
     func collectionViewCellDidTapCell(_ cell: PosterCollectionViewTableViewCell, with item: Item) {
-      
+        
         guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return }
         
         APICaller.shared.getSerialSeasonEpisode(with: id) { result in
@@ -182,41 +188,42 @@ extension SearchViewController: CollectionViewTableViewCellDelegate {
                     let vc = PreviewViewController()
                     vc.configure(with: item, serial: serialResponse)
                     self.navigationController?.pushViewController(vc, animated: true)
-            }
+                }
             case .failure(_):
                 DispatchQueue.main.async {
                     let vc = PreviewViewController()
                     vc.configure(with: item, serial: nil)
                     self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }
 }
-}
 
+//MARK: - SearchResultsViewControllerDelegate
 extension SearchViewController: SearchResultsViewControllerDelegate {
     
     func searchResultsViewControllerDidTapItem(with item: Item) {
         
-    guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return }
-    
-    APICaller.shared.getSerialSeasonEpisode(with: id) { result in
+        guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return }
         
-        switch result {
-        
-        case .success(let serialResponse):
-            DispatchQueue.main.async {
-                let vc = PreviewViewController()
-                vc.configure(with: item, serial: serialResponse)
-                self.navigationController?.pushViewController(vc, animated: true)
+        APICaller.shared.getSerialSeasonEpisode(with: id) { result in
+            
+            switch result {
+            
+            case .success(let serialResponse):
+                DispatchQueue.main.async {
+                    let vc = PreviewViewController()
+                    vc.configure(with: item, serial: serialResponse)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    let vc = PreviewViewController()
+                    vc.configure(with: item, serial: nil)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
         }
-        case .failure(_):
-            DispatchQueue.main.async {
-                let vc = PreviewViewController()
-                vc.configure(with: item, serial: nil)
-                self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-}
     }
 }

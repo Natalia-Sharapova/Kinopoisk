@@ -26,7 +26,7 @@ class TrailerViewController: UIViewController {
         return label
     }()
     
-    // MARK: - View controller methods
+    // MARK: - ViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +50,7 @@ class TrailerViewController: UIViewController {
             nameLabel.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 15).isActive = true
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
     }
-    
-   // func configure(with model: TrailerViewModel) {
+   
     func configure(with movieName: String, youtubeVideo: VideoElements) {
         
         nameLabel.text = movieName

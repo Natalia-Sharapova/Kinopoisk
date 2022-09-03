@@ -20,7 +20,7 @@ class DownloadsViewController: UIViewController {
         return tableView
     }()
     
-    //MARK: - VC methods
+    //MARK: - ViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +67,7 @@ class DownloadsViewController: UIViewController {
     }
 }
 //MARK: - Extensions
+//MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -134,12 +135,11 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
                     let vc = TrailerViewController()
                     
                     vc.configure(with: nameMovie, youtubeVideo: videoElement)
-                    //(with: TrailerViewModel(movieName: nameMovie, youtubeVideo: videoElement))
                     
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):
-                print(#line, "Error", error.localizedDescription)
+                print("Error", error.localizedDescription)
             }
             return
         }

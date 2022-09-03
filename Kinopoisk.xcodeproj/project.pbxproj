@@ -39,9 +39,6 @@
 		9B894A0C28AFA56E0033B5EB /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B894A0B28AFA56E0033B5EB /* UIStackView+Extension.swift */; };
 		9B9BB47E289A860E0076439C /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB47D289A860E0076439C /* UIImageView+Extension.swift */; };
 		9B9BB481289A8FB10076439C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB480289A8FB10076439C /* UILabel+Extension.swift */; };
-		9B9BB483289A944D0076439C /* ActorCollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB482289A944D0076439C /* ActorCollectionViewCell+Extension.swift */; };
-		9B9BB485289AA4580076439C /* UICollectionViewFlowLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB484289AA4580076439C /* UICollectionViewFlowLayout+Extension.swift */; };
-		9B9BB487289AA8B00076439C /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB486289AA8B00076439C /* UICollectionView+Extension.swift */; };
 		9B9BB489289AB3B50076439C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BB488289AB3B50076439C /* UIButton+Extension.swift */; };
 		9BB80D2F2828150D00E7B9CA /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB80D2E2828150D00E7B9CA /* PosterCollectionViewCell.swift */; };
 		9BC4744A28377E84002D50E2 /* ActorCollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4744928377E84002D50E2 /* ActorCollectionViewTableViewCell.swift */; };
@@ -94,9 +91,6 @@
 		9B894A0B28AFA56E0033B5EB /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		9B9BB47D289A860E0076439C /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		9B9BB480289A8FB10076439C /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
-		9B9BB482289A944D0076439C /* ActorCollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActorCollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
-		9B9BB484289AA4580076439C /* UICollectionViewFlowLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extension.swift"; sourceTree = "<group>"; };
-		9B9BB486289AA8B00076439C /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		9B9BB488289AB3B50076439C /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		9BB80D2E2828150D00E7B9CA /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BC4744928377E84002D50E2 /* ActorCollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -180,9 +174,6 @@
 			children = (
 				9B9BB47D289A860E0076439C /* UIImageView+Extension.swift */,
 				9B9BB480289A8FB10076439C /* UILabel+Extension.swift */,
-				9B9BB482289A944D0076439C /* ActorCollectionViewCell+Extension.swift */,
-				9B9BB484289AA4580076439C /* UICollectionViewFlowLayout+Extension.swift */,
-				9B9BB486289AA8B00076439C /* UICollectionView+Extension.swift */,
 				9B9BB488289AB3B50076439C /* UIButton+Extension.swift */,
 				9B894A0B28AFA56E0033B5EB /* UIStackView+Extension.swift */,
 			);
@@ -357,7 +348,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B9BB487289AA8B00076439C /* UICollectionView+Extension.swift in Sources */,
 				9B2F7D27284FA6B1000BF9A7 /* Item+CoreDataProperties.swift in Sources */,
 				9BD3F620282588F000FB542A /* SearchViewController.swift in Sources */,
 				9B587875284500D80019784F /* ActorsFilmTableViewCell.swift in Sources */,
@@ -388,7 +378,6 @@
 				9B35CE31283F94CE007CDF41 /* ActorViewController.swift in Sources */,
 				9B11BE4728395BAF0012978A /* ReviewCollectionViewCell.swift in Sources */,
 				9BC4744A28377E84002D50E2 /* ActorCollectionViewTableViewCell.swift in Sources */,
-				9B9BB485289AA4580076439C /* UICollectionViewFlowLayout+Extension.swift in Sources */,
 				9B835B9A283A82EF00FEFD9A /* RatingKinipoiskTableViewCell.swift in Sources */,
 				9B894A0C28AFA56E0033B5EB /* UIStackView+Extension.swift in Sources */,
 				9B2F7D11284F7C77000BF9A7 /* Model.xcdatamodeld in Sources */,
@@ -398,7 +387,6 @@
 				9BD3F605282585CE00FB542A /* AppDelegate.swift in Sources */,
 				9BC474542838217B002D50E2 /* Reviews.swift in Sources */,
 				9BD3F607282585CE00FB542A /* SceneDelegate.swift in Sources */,
-				9B9BB483289A944D0076439C /* ActorCollectionViewCell+Extension.swift in Sources */,
 				9B9BB489289AB3B50076439C /* UIButton+Extension.swift in Sources */,
 				9BD3F61E282588DE00FB542A /* MediaViewController.swift in Sources */,
 				9B7A656F2826F9500005C79A /* Movie.swift in Sources */,

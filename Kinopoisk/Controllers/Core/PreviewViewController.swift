@@ -17,11 +17,13 @@ class PreviewViewController: UIViewController {
         case Images = 3
         case Reviews = 4
     }
-  
+    
+    //MARK: - Properties
+    
     private var item: Item!
     var headerView: StretchyTableHeaderView?
     var rowisHidden = false
-
+    
     private let previewTableView: UITableView = {
         
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -35,9 +37,10 @@ class PreviewViewController: UIViewController {
     
     let sectionTitles: [String] = ["Рейтинг Кинопоиска", "Трейлеры и тизеры", "Актеры", "Изображения", "Рецензии"]
     
+    //MARK: - ViewController methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(previewTableView)
         previewTableView.delegate = self
         previewTableView.dataSource = self
@@ -49,31 +52,35 @@ class PreviewViewController: UIViewController {
         previewTableView.frame = view.bounds
         navigationController?.navigationBar.transform = .init(translationX: 0, y: 0)
     }
-   
-   func configure(with item: Item, serial: SerialResponse?) {
     
+    //MARK: - Methods
+    
+    func configure(with item: Item, serial: SerialResponse?) {
+        
         self.item = item
-       
+        
         configureHeaderView(with: item, serial: serial)
     }
-   
- func configureHeaderView(with item: Item, serial: SerialResponse?) {
-      
+    
+    func configureHeaderView(with item: Item, serial: SerialResponse?) {
+        
         headerView = StretchyTableHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         previewTableView.tableHeaderView = headerView
-    
-    headerView?.delegate = self
+        
+        headerView?.delegate = self
         
         headerView?.configure(with: item, serial: serial)
     }
 }
+
+//MARK: - Extensions
 
 extension PreviewViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let headerView = self.previewTableView.tableHeaderView as! StretchyTableHeaderView
-                headerView.scrollViewDidScroll(scrollView: scrollView)
+        headerView.scrollViewDidScroll(scrollView: scrollView)
     }
 }
 
@@ -89,17 +96,18 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       let cell: UITableViewCell = UITableViewCell()
+        let cell: UITableViewCell = UITableViewCell()
         
         switch indexPath.section {
         
+        //RatingKinopoisk:
         case Sections.RatingKinopoisk.rawValue:
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.ratingKinipoiskTableViewCell.rawValue, for: indexPath) as? RatingKinipoiskTableViewCell else { return UITableViewCell() }
             
             if let ratingDouble = item.ratingKinopoisk {
-               
-              let rating = String(format: "%.1f", ratingDouble)
+                
+                let rating = String(format: "%.1f", ratingDouble)
                 cell.configureRating(with: rating)
                 
             } else if let ratingDouble = item.ratingImdb {
@@ -111,8 +119,8 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.configureRating(with: "0.0")
             }
-          
-                if let ratingCount = item.ratingImdbVoteCount {
+            
+            if let ratingCount = item.ratingImdbVoteCount {
                 cell.configureRatingCount(with: ratingCount)
             } else if let ratingCount = item.ratingKinopoiskVoteCount {
                 cell.configureRatingCount(with: ratingCount)
@@ -122,11 +130,12 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.configureRatingCount(with: 0)
             }
             return cell
-      
+            
+        //Trailers:
         case Sections.Trailers.rawValue:
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.trailerCollectionViewTableViewCell.rawValue, for: indexPath) as? TrailerCollectionViewTableViewCell else { return UITableViewCell() }
-           
+            
             guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return UITableViewCell() }
             
             APICaller.shared.getVideo(with: id) { result in
@@ -134,7 +143,6 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
                 switch result {
                 case .success(let videos):
                     cell.configure(with: videos)
-                    print(#line,videos)
                     if videos.count == 0 {
                         self.rowisHidden = true
                     }
@@ -144,10 +152,11 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
             
+        //Actors:
         case Sections.Actors.rawValue:
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.actorCollectionViewTableViewCell.rawValue, for: indexPath) as? ActorCollectionViewTableViewCell else { return UITableViewCell() }
-           
+            
             cell.delegate = self
             
             guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return UITableViewCell() }
@@ -163,12 +172,13 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
             
+        //Images:
         case Sections.Images.rawValue:
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.imageCollectionViewTableViewCell.rawValue, for: indexPath) as? ImageCollectionViewTableViewCell else { return UITableViewCell() }
-           
+            
             guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return UITableViewCell() }
-          
+            
             APICaller.shared.getImages(with: id) { result in
                 switch result {
                 case .success(let images):
@@ -181,38 +191,40 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             return cell
-         
+            
+        //Reviews:
         case Sections.Reviews.rawValue:
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.reviewCollectionViewTableViewCell.rawValue, for: indexPath) as? ReviewCollectionViewTableViewCell else { return UITableViewCell() }
-           
+            
             cell.delegate = self
             guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return UITableViewCell() }
-        
+            
             APICaller.shared.getReviews(with: id) { result in
                 switch result {
                 case .success(let reviews):
                     cell.configure(with: reviews)
-                  if reviews.count == 0 {
-                    self.rowisHidden = true
+                    if reviews.count == 0 {
+                        self.rowisHidden = true
                     }
                 case .failure(let error):
-                    print(#line, String(describing: error))
+                    print(String(describing: error))
                 }
             }
             return cell
         default:
             break
         }
-     return cell
+        return cell
     }
     
-   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch indexPath.section {
         
         case Sections.RatingKinopoisk.rawValue:
             return 150
+            
         case Sections.Trailers.rawValue:
             var height: CGFloat = 0.0
             if rowisHidden {
@@ -221,31 +233,32 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
                 height = 250
             }
             return height
+            
         case Sections.Actors.rawValue:
             return 320
-       case Sections.Images.rawValue:
-        var height: CGFloat = 0.0
-    
-        if rowisHidden {
-            height = 0
-        } else {
-            height = 200
-        }
-        return height
-     
-     case Sections.Reviews.rawValue:
-        var height: CGFloat = 0.0
-    
-        if rowisHidden {
-            height = 0
-        } else {
-            height = 250
-        }
-       
-        return height
-        
-     default:
-        return 0.0
+            
+        case Sections.Images.rawValue:
+            var height: CGFloat = 0.0
+            
+            if rowisHidden {
+                height = 0
+            } else {
+                height = 200
+            }
+            return height
+            
+        case Sections.Reviews.rawValue:
+            var height: CGFloat = 0.0
+            
+            if rowisHidden {
+                height = 0
+            } else {
+                height = 250
+            }
+            return height
+            
+        default:
+            return 0.0
         }
     }
     
@@ -266,40 +279,45 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.text = header.textLabel?.text?.capitalizedFithFirstLetter()
     }
 }
+
+//MARK: - Extensions
+//MARK: - ReviewCollectionViewTableViewCellDelegate
 extension PreviewViewController: ReviewCollectionViewTableViewCellDelegate {
     
     func collectionViewCellDidTapCell(_ cell: ReviewCollectionViewTableViewCell, with review: VideoReview) {
-      
-                    let vc = ReviewViewController()
-                    vc.modalTransitionStyle = .flipHorizontal
-                    vc.modalPresentationStyle = .popover
-                    vc.configure(with: review)
-                    
-                    present(vc, animated: true, completion: nil)
+        
+        let vc = ReviewViewController()
+        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .popover
+        vc.configure(with: review)
+        
+        present(vc, animated: true, completion: nil)
     }
 }
-    
+
+//MARK: - ActorCollectionViewTableViewCellDelegate
 extension PreviewViewController: ActorCollectionViewTableViewCellDelegate {
     
     func actorCollectionViewCellDidTapCell(_ cell: ActorCollectionViewTableViewCell, with personId: Int) {
         
-            APICaller.shared.getActorInformation(with: personId) { result in
-                
-                switch result {
-                case .success(let actor):
-                    DispatchQueue.main.async {
-                        let vc = ActorViewController()
-                        vc.configure(with: actor)
-                        
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
+        APICaller.shared.getActorInformation(with: personId) { result in
+            
+            switch result {
+            case .success(let actor):
+                DispatchQueue.main.async {
+                    let vc = ActorViewController()
+                    vc.configure(with: actor)
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
-                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
+//MARK: - PlayButtonTappedDelegate
 extension PreviewViewController: PlayButtonTappedDelegate {
     
     func playButtonTappedWithDelegate(with item: Item) {
@@ -307,21 +325,21 @@ extension PreviewViewController: PlayButtonTappedDelegate {
         guard let nameMovie = item.nameEn ?? item.nameOriginal else { return }
         
         APICaller.shared.getTrailer(with: nameMovie) { result in
-        
+            
             switch result {
             case .success(let videoElement):
                 
                 DispatchQueue.main.async {
-                let vc = TrailerViewController()
-                
-                vc.configure(with: nameMovie, youtubeVideo: videoElement)
-                
-                self.navigationController?.pushViewController(vc, animated: true)
+                    let vc = TrailerViewController()
+                    
+                    vc.configure(with: nameMovie, youtubeVideo: videoElement)
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):
-                    print(#line, "Error", error.localizedDescription)
-                }
-                return
+                print("Error", error.localizedDescription)
             }
+            return
+        }
     }
 }

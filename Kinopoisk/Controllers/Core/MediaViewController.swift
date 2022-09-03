@@ -14,11 +14,13 @@ enum Sections: Int {
     case TvShow = 2
     case TurkishSerials = 3
     case KoreanSerials = 4
-  
+    
 }
 
 class MediaViewController: UIViewController {
-
+    
+    //MARK: - Properties
+    
     private let mediaTableView: UITableView = {
         
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -28,6 +30,8 @@ class MediaViewController: UIViewController {
     
     let sectionTitles: [String] = ["Кинопремьеры", "Скоро", "Тв-шоу", "Турецкие сериалы", "Корейские сериалы"]
     
+    //MARK: - ViewController methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -35,7 +39,7 @@ class MediaViewController: UIViewController {
         
         mediaTableView.dataSource = self
         mediaTableView.delegate = self
-       
+        
         title = "Медиа"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
@@ -48,6 +52,8 @@ class MediaViewController: UIViewController {
     }
 }
 
+//MARK: - Extensions
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +67,7 @@ extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         
         switch indexPath.section {
-      
+        
         case Sections.Premiers.rawValue:
             
             APICaller.shared.getPremiers { result in
@@ -76,7 +82,7 @@ extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
         case Sections.TvShow.rawValue:
             
             APICaller.shared.getTvShow { result in
-              
+                
                 switch result {
                 case .success(let items):
                     cell.configureItems(with: items)
@@ -87,24 +93,24 @@ extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
             
         case Sections.TurkishSerials.rawValue:
             APICaller.shared.getTurkishSerials { result in
-              
-            switch result {
-            case .success(let items):
-                cell.configureItems(with: items)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+                
+                switch result {
+                case .success(let items):
+                    cell.configureItems(with: items)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
             
         case Sections.KoreanSerials.rawValue:
             APICaller.shared.getKoreanSerials { result in
-              
-            switch result {
-            case .success(let items):
-                cell.configureItems(with: items)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+                
+                switch result {
+                case .success(let items):
+                    cell.configureItems(with: items)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
             
         case Sections.AwaitFilms.rawValue:
@@ -150,15 +156,16 @@ extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - CollectionViewTableViewCellDelegate
 extension MediaViewController: CollectionViewTableViewCellDelegate {
     
     func collectionViewCellDidTapCell(_ cell: PosterCollectionViewTableViewCell, with item: Item) {
-      
+        
         guard let id = item.kinopoiskId ?? item.filmId ?? Int(item.imdbId ?? "") else { return }
         
         APICaller.shared.getSerialSeasonEpisode(with: id) { result in
-            switch result {
             
+            switch result {
             case .success(let serialResponse):
                 
                 DispatchQueue.main.async {
@@ -166,14 +173,14 @@ extension MediaViewController: CollectionViewTableViewCellDelegate {
                     vc.configure(with: item, serial: serialResponse)
                     self.navigationController?.pushViewController(vc, animated: true)
                     
-            }
+                }
             case .failure(_):
                 DispatchQueue.main.async {
                     let vc = PreviewViewController()
                     vc.configure(with: item, serial: nil)
                     self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }
-}
 }
