@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Images: Codable {
     let total: Int?
     let items: [VideoImages]

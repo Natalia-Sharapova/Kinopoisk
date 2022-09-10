@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Protocol
+
 protocol CollectionViewTableViewCellDelegate: AnyObject {
     
     func collectionViewCellDidTapCell(_ cell: PosterCollectionViewTableViewCell, with item: Item)
@@ -15,8 +17,9 @@ protocol CollectionViewTableViewCellDelegate: AnyObject {
 class PosterCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+    
     private var items = [Item]()
-   
+    
     private let posterCollectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -76,6 +79,8 @@ class PosterCollectionViewTableViewCell: UITableViewCell {
 }
 
 // MARK: - Extensions
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+
 extension PosterCollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -89,7 +94,7 @@ extension PosterCollectionViewTableViewCell: UICollectionViewDelegate, UICollect
         guard let model = (items[indexPath.row].posterUrlPreview != nil) ? items[indexPath.row].posterUrlPreview : items[indexPath.row].posterUrl else { return UICollectionViewCell() }
         
         // Configure the cell depends on the rating's type
-      
+        
         if let rating = items[indexPath.row].ratingKinopoisk {
             cell.configure(with: model, ratingDouble: rating)
             
@@ -124,8 +129,7 @@ extension PosterCollectionViewTableViewCell: UICollectionViewDelegate, UICollect
                                   state: .off) { _ in
                 self.downloadItemAt(indexPath: indexPath)
             }
-                                                    
-          return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [action])
+        return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [action])
         }
         return config
     }

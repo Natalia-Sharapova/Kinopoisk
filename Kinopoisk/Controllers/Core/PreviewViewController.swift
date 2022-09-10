@@ -38,6 +38,7 @@ class PreviewViewController: UIViewController {
     let sectionTitles: [String] = ["Рейтинг Кинопоиска", "Трейлеры и тизеры", "Актеры", "Изображения", "Рецензии"]
     
     //MARK: - ViewController methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +59,6 @@ class PreviewViewController: UIViewController {
     func configure(with item: Item, serial: SerialResponse?) {
         
         self.item = item
-        
         configureHeaderView(with: item, serial: serial)
     }
     
@@ -74,6 +74,7 @@ class PreviewViewController: UIViewController {
 }
 
 //MARK: - Extensions
+//MARK: - UIScrollViewDelegate
 
 extension PreviewViewController: UIScrollViewDelegate {
     
@@ -83,6 +84,8 @@ extension PreviewViewController: UIScrollViewDelegate {
         headerView.scrollViewDidScroll(scrollView: scrollView)
     }
 }
+
+//MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -318,6 +321,7 @@ extension PreviewViewController: ActorCollectionViewTableViewCellDelegate {
 }
 
 //MARK: - PlayButtonTappedDelegate
+
 extension PreviewViewController: PlayButtonTappedDelegate {
     
     func playButtonTappedWithDelegate(with item: Item) {

@@ -54,6 +54,7 @@ class MediaViewController: UIViewController {
 
 //MARK: - Extensions
 //MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -157,6 +158,7 @@ extension MediaViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - CollectionViewTableViewCellDelegate
+
 extension MediaViewController: CollectionViewTableViewCellDelegate {
     
     func collectionViewCellDidTapCell(_ cell: PosterCollectionViewTableViewCell, with item: Item) {

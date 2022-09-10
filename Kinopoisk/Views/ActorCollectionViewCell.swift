@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 
 enum Identifier: String {
+    
     case actorCollectionViewCell
     case actorCollectionViewTableViewCell
     case posterCollectionViewCell
@@ -27,6 +28,7 @@ enum Identifier: String {
 class ActorCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
     private let actorImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 8)
     private let nameRuLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 14), cornerRadius: 0, textAlignment: .left)
     private let nameEnLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 0, textAlignment: .left)

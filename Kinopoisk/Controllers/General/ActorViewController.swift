@@ -106,7 +106,7 @@ class ActorViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
     }
     
-    func configure(with actor: ActorInformation) {
+   public func configure(with actor: ActorInformation) {
         
         guard let urlString = actor.posterUrl else { return }
         let url = URL(string: urlString)
@@ -132,6 +132,7 @@ class ActorViewController: UIViewController {
 }
 //MARK: - Extensions
 //MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension ActorViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

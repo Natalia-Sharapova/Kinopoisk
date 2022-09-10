@@ -9,11 +9,11 @@ import Foundation
 
 extension String {
     
-    func capitalizedFithFirstLetter() -> String {
+   public func capitalizedFithFirstLetter() -> String {
         return self.prefix(1).uppercased() + self.lowercased().dropFirst()
     }
     
-    func formattedDate(from dateString: String) -> String {
+    public func formattedDate(from dateString: String) -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"

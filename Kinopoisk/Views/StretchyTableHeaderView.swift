@@ -8,6 +8,8 @@
 import UIKit
 import SDWebImage
 
+// MARK: - Protocol
+
 protocol PlayButtonTappedDelegate: AnyObject {
     func playButtonTappedWithDelegate(with item: Item)
 }
@@ -15,6 +17,7 @@ protocol PlayButtonTappedDelegate: AnyObject {
 class StretchyTableHeaderView: UIView {
     
     // MARK: - Properties
+    
     private var imageViewHeight = NSLayoutConstraint()
     private var imageViewBottom = NSLayoutConstraint()
     private var containerViewHeight = NSLayoutConstraint()
@@ -22,13 +25,16 @@ class StretchyTableHeaderView: UIView {
     private var item: Item!
     weak var delegate: PlayButtonTappedDelegate?
     
-    let containerView: UIView = {
+    private let containerView: UIView = {
         let containerView = UIView()
         return containerView
     }()
     
+    // Buttons
     private let downloadButton = UIButton(title: nil, cornerRadius: 20, backgroundColor: .systemGray, titleColor: .orange)
     private let playButton = UIButton(title: "▷ Смотреть", cornerRadius: 18, backgroundColor: .orange, titleColor: .black)
+    
+    // Labels
     public let nameLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 30), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
     public let ratingLabel = UILabel(textColor: .systemRed, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
     public let originalNameLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
@@ -37,35 +43,20 @@ class StretchyTableHeaderView: UIView {
     public let countryLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
     public let filmLengthLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
     public let ageLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    
+    // StackViews
     public let buttonsStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 20)
     public let countryStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
     public let ratingStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
     public let genreStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
+    
+    // ImageView
     public let heroImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 0)
-   
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setItems()
-        
-      /*  downloadButton.setImage(UIImage(named: "save"), for: .normal)
-        downloadButton.translatesAutoresizingMaskIntoConstraints = false
-        downloadButton.translatesAutoresizingMaskIntoConstraints = false
-        playButton.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        ratingLabel.translatesAutoresizingMaskIntoConstraints = true
-        originalNameLabel.translatesAutoresizingMaskIntoConstraints = true
-        originalNameLabel.translatesAutoresizingMaskIntoConstraints = true
-        seasonsLabel.translatesAutoresizingMaskIntoConstraints = true
-        countryLabel.translatesAutoresizingMaskIntoConstraints = true
-        filmLengthLabel.translatesAutoresizingMaskIntoConstraints = true
-        ageLabel.translatesAutoresizingMaskIntoConstraints = true
-        heroImageView.clipsToBounds = true
-        heroImageView.translatesAutoresizingMaskIntoConstraints = false
-        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
-        countryStackView.translatesAutoresizingMaskIntoConstraints = false
-        ratingStackView.translatesAutoresizingMaskIntoConstraints = false
-        genreStackView.translatesAutoresizingMaskIntoConstraints = false*/
         
         addSubview(containerView)
         containerView.addSubview(heroImageView)
@@ -99,7 +90,7 @@ class StretchyTableHeaderView: UIView {
         super.init(coder: aDecoder)
     }
     
-    func addGradient() {
+    private func addGradient() {
         let gradientLayer = CAGradientLayer()
         
         gradientLayer.colors = [
@@ -132,53 +123,55 @@ class StretchyTableHeaderView: UIView {
         self.delegate?.playButtonTappedWithDelegate(with: item)
     }
     
-    func setViewConstraints() {
+   private func setViewConstraints() {
+    
+    NSLayoutConstraint.activate([
         
         // nameLabel Constraints
-        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150).isActive = true
-        nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150),
+        nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
         
         // StackView Constraints
-        ratingStackView.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 40).isActive = true
-        ratingStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        ratingStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 600).isActive = true
-        ratingStackView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        ratingStackView.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 40),
+        ratingStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+        ratingStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 600),
+        ratingStackView.heightAnchor.constraint(equalToConstant: 25),
         
-        genreStackView.bottomAnchor.constraint(equalTo: ratingStackView.bottomAnchor, constant: 20).isActive = true
-        genreStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        genreStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 400).isActive = true
-        genreStackView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        genreStackView.bottomAnchor.constraint(equalTo: ratingStackView.bottomAnchor, constant: 20),
+        genreStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+        genreStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 400),
+        genreStackView.heightAnchor.constraint(equalToConstant: 25),
         
-        countryStackView.bottomAnchor.constraint(equalTo: genreStackView.bottomAnchor, constant: 20).isActive = true
-        countryStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        countryStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 600).isActive = true
-        countryStackView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        countryStackView.bottomAnchor.constraint(equalTo: genreStackView.bottomAnchor, constant: 20),
+        countryStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+        countryStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 600),
+        countryStackView.heightAnchor.constraint(equalToConstant: 25),
         
-        buttonsStackView.topAnchor.constraint(equalTo: countryStackView.bottomAnchor, constant: 15).isActive = true
-        buttonsStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        buttonsStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 450).isActive = true
-        buttonsStackView.heightAnchor.constraint(equalToConstant: 42).isActive = true
-        
+        buttonsStackView.topAnchor.constraint(equalTo: countryStackView.bottomAnchor, constant: 15),
+        buttonsStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+        buttonsStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 450),
+        buttonsStackView.heightAnchor.constraint(equalToConstant: 42),
+    
         // Buttons Constraints
-        playButton.widthAnchor.constraint(equalToConstant: 160).isActive = true
-        playButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        playButton.widthAnchor.constraint(equalToConstant: 160),
+        playButton.heightAnchor.constraint(equalToConstant: 40),
         
-        downloadButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        downloadButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalTo: containerView.widthAnchor),
-            self.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            self.heightAnchor.constraint(equalTo: containerView.heightAnchor)
-        ])
+        downloadButton.widthAnchor.constraint(equalToConstant: 40),
+        downloadButton.heightAnchor.constraint(equalToConstant: 40),
         
         // Container View Constraints
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.widthAnchor.constraint(equalTo: heroImageView.widthAnchor).isActive = true
-        containerViewHeight = containerView.heightAnchor.constraint(equalTo: self.heightAnchor)
-        containerViewHeight.isActive = true
+        containerView.widthAnchor.constraint(equalTo: heroImageView.widthAnchor),
+        
+        self.widthAnchor.constraint(equalTo: containerView.widthAnchor),
+        self.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+        self.heightAnchor.constraint(equalTo: containerView.heightAnchor)
+    ])
+   
+    containerView.translatesAutoresizingMaskIntoConstraints = false
+    containerViewHeight = containerView.heightAnchor.constraint(equalTo: self.heightAnchor)
+    containerViewHeight.isActive = true
         
         // ImageView Constraints
         heroImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -189,23 +182,27 @@ class StretchyTableHeaderView: UIView {
     }
     
     func setItems() {
-    
         downloadButton.setImage(UIImage(named: "save"), for: .normal)
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
+        
         playButton.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         ratingLabel.translatesAutoresizingMaskIntoConstraints = true
+        
         originalNameLabel.translatesAutoresizingMaskIntoConstraints = true
         originalNameLabel.translatesAutoresizingMaskIntoConstraints = true
         seasonsLabel.translatesAutoresizingMaskIntoConstraints = true
+        
         countryLabel.translatesAutoresizingMaskIntoConstraints = true
         filmLengthLabel.translatesAutoresizingMaskIntoConstraints = true
         ageLabel.translatesAutoresizingMaskIntoConstraints = true
         heroImageView.clipsToBounds = true
+        
         heroImageView.translatesAutoresizingMaskIntoConstraints = false
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         countryStackView.translatesAutoresizingMaskIntoConstraints = false
+        
         ratingStackView.translatesAutoresizingMaskIntoConstraints = false
         genreStackView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -243,7 +240,7 @@ class StretchyTableHeaderView: UIView {
             seasonsLabel.text = nil
         }
         
-       // MARK: - Set the rating depends on URL response
+        // MARK: - Set the rating depends on URL response
         
         if let rating = item.ratingKinopoisk {
             ratingLabel.text = String(format: "%.1f", rating) + ","

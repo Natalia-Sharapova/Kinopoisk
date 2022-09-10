@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Protocol
+
 protocol SearchResultsViewControllerDelegate: AnyObject {
     func searchResultsViewControllerDidTapItem(with item: Item)
 }
@@ -30,7 +32,8 @@ class SearchResultsViewController: UIViewController {
         return collectionView
     }()
     
-    // MARK: - VC methods
+    // MARK: - ViewController methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,6 +70,7 @@ class SearchResultsViewController: UIViewController {
 }
 
 // MARK: - Extensions
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
 extension SearchResultsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -96,7 +100,6 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
         let item = films[indexPath.row]
         
         self.delegate?.searchResultsViewControllerDidTapItem(with: item)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -116,6 +119,8 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
         return config
     }
 }
+
+// MARK: - CollectionViewTableViewCellDelegate
 
 extension SearchResultsViewController: CollectionViewTableViewCellDelegate {
     

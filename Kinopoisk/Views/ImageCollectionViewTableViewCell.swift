@@ -10,6 +10,7 @@ import UIKit
 class ImageCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+    
     private var images = [VideoImages]()
     
     private let imageCollectionView: UICollectionView = {
@@ -53,6 +54,7 @@ class ImageCollectionViewTableViewCell: UITableViewCell {
     }
 }
 // MARK: - Extensions
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
 extension ImageCollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     

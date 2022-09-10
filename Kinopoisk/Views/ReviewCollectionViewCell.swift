@@ -16,6 +16,7 @@ enum Rating: String {
 class ReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
     private let nameLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     private let dateLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     private let titleLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
@@ -47,6 +48,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
+    
     private func setConstraints() {
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +99,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         ])
     }
         
-        func configure(with review: VideoReview) {
+       public func configure(with review: VideoReview) {
             
             guard let name = review.author,
                   let date = review.date,

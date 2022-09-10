@@ -33,7 +33,6 @@ class DownloadsViewController: UIViewController {
         tableView.dataSource = self
         
         // Fetch the data from database
-        
         fetchLocalStorageFromDownload()
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("Downloaded"), object: nil, queue: nil) { _ in

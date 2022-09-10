@@ -10,6 +10,7 @@ import UIKit
 class TrailerCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+    
     private var videos = [VideoKinopoisk]()
     
     private let trailerCollectionView: UICollectionView = {
@@ -37,6 +38,7 @@ class TrailerCollectionViewTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -53,6 +55,7 @@ class TrailerCollectionViewTableViewCell: UITableViewCell {
 }
 
 // MARK: - Extensions
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
 extension TrailerCollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     

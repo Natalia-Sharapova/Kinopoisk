@@ -7,12 +7,12 @@
 
 import UIKit
 
-
 class ImageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
     private let posterImageView = UIImageView(contentMode: .scaleAspectFit, cornerRadius: 8)
-   
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -25,6 +25,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

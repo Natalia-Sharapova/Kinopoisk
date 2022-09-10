@@ -30,113 +30,44 @@ class ReviewViewController: UIViewController {
         return contentView
     }()
     
-    private let nameLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
-        label.numberOfLines = 0
-        return label
-    }()
+    private let nameLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 20), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let reviewLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 20), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let dateLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
     
-    private let reviewLabel: UILabel = {
+    private lazy var nameStackView = UIStackView(axis: .vertical, distribution: .fill, alignment: .leading, spacing: 5)
+    private lazy var ratingStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .leading, spacing: 5)
+     
+    private let positiveLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 15), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let negativeLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 15), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+   
+    private let titleLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 25), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let descriptionLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let ratingLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 14), cornerRadius: 4, numberOfLines: 0, textAlignment: .center)
         
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Отзыв"
-        return label
-    }()
-    
-    private let dateLabel: UILabel = {
+    private let cancelButton = UIButton(title: "", cornerRadius: 12.5, backgroundColor: .lightGray, titleColor: .blue)
         
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
-        return label
-    }()
-    
-    private lazy var nameStackView: UIStackView = {
-        
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .leading
-        stackView.spacing = 5
-        return stackView
-    }()
-    
-    private let positiveLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
-        return label
-    }()
-    
-    private let negativeLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
-        return label
-    }()
-    
-    private lazy var ratingStackView: UIStackView = {
-        
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .leading
-        stackView.spacing = 5
-        return stackView
-    }()
-    
-    private let titleLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 25)
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    private let descriptionLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontSizeToFitWidth = true
-        return label
-    }()
-    
-    private let cancelButton: UIButton = {
-        
-        let button = UIButton()
-        button.backgroundColor = UIColor.lightGray
-        button.setImage(UIImage(systemName: "multiply"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 12.5
-        button.tintColor = .darkGray
-        return button
-    }()
-    
-    private let ratingLabel: UILabel = {
-        
-        let label = UILabel()
-        label.layer.cornerRadius = 4
-        label.clipsToBounds = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    // MARK: - VC methods
+    // MARK: - ViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        
+        reviewLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameStackView.translatesAutoresizingMaskIntoConstraints = false
+        ratingStackView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.adjustsFontSizeToFitWidth = true
+        ratingLabel.clipsToBounds = true
+            
+        reviewLabel.text = "Отзыв"
+        
+        cancelButton.setImage(UIImage(systemName: "multiply"), for: .normal)
+        
+        cancelButton.tintColor = .darkGray
         
         setupScrollView()
         setupViews()
@@ -155,68 +86,73 @@ class ReviewViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 140).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 140),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
     }
     
     private func setupViews() {
         
         view.addSubview(ratingLabel)
-        ratingLabel.widthAnchor.constraint(equalToConstant: 5).isActive = true
-        ratingLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        ratingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        ratingLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
-        
         view.addSubview(cancelButton)
-        cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
-        cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15).isActive = true
-        cancelButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        cancelButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
         view.addSubview(reviewLabel)
-        reviewLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-        reviewLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        reviewLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
+       
         view.addSubview(nameStackView)
         nameStackView.addArrangedSubview(nameLabel)
         nameStackView.addArrangedSubview(dateLabel)
-        
-        nameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        nameStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.centerXAnchor).isActive = true
-        nameStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
-        nameStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
         
         view.addSubview(ratingStackView)
         ratingStackView.addArrangedSubview(positiveLabel)
         ratingStackView.addArrangedSubview(negativeLabel)
         
-        ratingStackView.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive = true
-        ratingStackView.widthAnchor.constraint(equalToConstant: 90).isActive = true
-        ratingStackView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        ratingStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
-        
-        
         contentView.addSubview(titleLabel)
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        
         contentView.addSubview(descriptionLabel)
-        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            ratingLabel.widthAnchor.constraint(equalToConstant: 5),
+            ratingLabel.heightAnchor.constraint(equalToConstant: 40),
+            ratingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            ratingLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            
+            cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            cancelButton.widthAnchor.constraint(equalToConstant: 25),
+            cancelButton.heightAnchor.constraint(equalToConstant: 25),
+            
+            reviewLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            reviewLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            reviewLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+            nameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            nameStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.centerXAnchor),
+            nameStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
+            nameStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            
+            ratingStackView.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120),
+            ratingStackView.widthAnchor.constraint(equalToConstant: 90),
+            ratingStackView.heightAnchor.constraint(equalToConstant: 40),
+            ratingStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+        
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
     
-    func configure(with review: VideoReview) {
+   public func configure(with review: VideoReview) {
         
         if let name = review.author,
            let date = review.date,
@@ -225,7 +161,6 @@ class ReviewViewController: UIViewController {
             dateLabel.text = date.formattedDate(from: date)
             
             switch rating {
-            
             case RatingReview.NEGATIVE.rawValue:
                 ratingLabel.backgroundColor = .red
                 

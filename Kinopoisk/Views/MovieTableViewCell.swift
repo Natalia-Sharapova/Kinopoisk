@@ -10,6 +10,7 @@ import UIKit
 class MovieTableViewCell: UITableViewCell {
     
     // MARK: - Propeties
+    
     private let playButton: UIButton = {
         let button = UIButton()
         let image = UIImage(systemName: "play.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25))
@@ -29,7 +30,7 @@ class MovieTableViewCell: UITableViewCell {
     }()
     
     private let posterImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 8)
-        
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -63,7 +64,7 @@ class MovieTableViewCell: UITableViewCell {
         playButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         playButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
-  
+    
     public func configure(with movieName: String, posterURL: String) {
         
         guard let url = URL(string: String(posterURL)) else { return }

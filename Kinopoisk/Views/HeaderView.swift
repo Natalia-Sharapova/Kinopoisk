@@ -11,6 +11,7 @@ import SDWebImage
 class HeaderView: UIView {
     
     // MARK: - Properties
+    
     private var item: Item!
     
     weak var delegate: PlayButtonTappedDelegate?

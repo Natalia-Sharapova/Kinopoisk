@@ -16,6 +16,7 @@ class SearchViewController: UIViewController {
     }
     
     //MARK: - Properties
+    
     private let searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(PosterCollectionViewTableViewCell.self, forCellReuseIdentifier: Identifier.posterCollectionViewTableViewCell.rawValue)
@@ -63,6 +64,7 @@ class SearchViewController: UIViewController {
 
 //MARK: - Extensions
 //MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -142,6 +144,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - UISearchResultsUpdating
+
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -173,6 +176,7 @@ extension SearchViewController: UISearchResultsUpdating {
 }
 
 //MARK: - CollectionViewTableViewCellDelegate
+
 extension SearchViewController: CollectionViewTableViewCellDelegate {
     
     func collectionViewCellDidTapCell(_ cell: PosterCollectionViewTableViewCell, with item: Item) {
@@ -201,6 +205,7 @@ extension SearchViewController: CollectionViewTableViewCellDelegate {
 }
 
 //MARK: - SearchResultsViewControllerDelegate
+
 extension SearchViewController: SearchResultsViewControllerDelegate {
     
     func searchResultsViewControllerDidTapItem(with item: Item) {

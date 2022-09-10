@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Protocol
+
 protocol ReviewCollectionViewTableViewCellDelegate: AnyObject {
     
     func collectionViewCellDidTapCell(_ cell: ReviewCollectionViewTableViewCell, with review: VideoReview)
@@ -28,6 +30,7 @@ class ReviewCollectionViewTableViewCell: UITableViewCell {
         layout.itemSize = CGSize(width: 300, height: 200)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ReviewCollectionViewCell.self, forCellWithReuseIdentifier: Identifier.reviewCollectionViewCell.rawValue)
+        
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
         layout.minimumInteritemSpacing = 15
         layout.minimumLineSpacing = 15
@@ -63,6 +66,8 @@ class ReviewCollectionViewTableViewCell: UITableViewCell {
     }
 }
 // MARK: - Extensions
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+
 extension ReviewCollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

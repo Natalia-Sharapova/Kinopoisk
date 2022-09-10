@@ -7,6 +7,8 @@
 
 import UIKit
 
+    // MARK: - Protocol
+
 protocol ActorCollectionViewTableViewCellDelegate: AnyObject {
     
     func actorCollectionViewCellDidTapCell(_ cell: ActorCollectionViewTableViewCell, with personId: Int)
@@ -15,6 +17,7 @@ protocol ActorCollectionViewTableViewCellDelegate: AnyObject {
 class ActorCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+    
     private var actors = [Actors]()
     
     weak var delegate: ActorCollectionViewTableViewCellDelegate?
@@ -51,7 +54,7 @@ class ActorCollectionViewTableViewCell: UITableViewCell {
         actorCollectionView.frame = contentView.bounds
     }
     
-    func configure(with actors: [Actors]) {
+    public func configure(with actors: [Actors]) {
         self.actors = actors
         
         DispatchQueue.main.async {
@@ -61,6 +64,7 @@ class ActorCollectionViewTableViewCell: UITableViewCell {
 }
 
 // MARK: - Extensions
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
 extension ActorCollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     

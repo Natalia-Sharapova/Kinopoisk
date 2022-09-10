@@ -10,6 +10,7 @@ import UIKit
 class RatingKinipoiskTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+    
     private var item: Item!
     
     private let ratingKinopoiskLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 60), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
@@ -38,11 +39,12 @@ class RatingKinipoiskTableViewCell: UITableViewCell {
     
     // MARK: - Methods
     
-    func configureRating(with rating: String) {
+  public func configureRating(with rating: String) {
         
         guard let ratingDouble = Double(rating) else {
             ratingKinopoiskLabel.text = rating
-            return }
+            return
+        }
         
         if ratingDouble < 7 {
             ratingKinopoiskLabel.textColor = .systemGray
@@ -52,7 +54,7 @@ class RatingKinipoiskTableViewCell: UITableViewCell {
         ratingKinopoiskLabel.text = String(format: "%.1f", ratingDouble)
     }
     
-    func configureRatingCount(with ratingCount: Int) {
+    public func configureRatingCount(with ratingCount: Int) {
         ratingCountLabel.text = String(ratingCount) + " оценок"
     }
     

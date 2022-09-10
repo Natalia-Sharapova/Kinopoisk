@@ -57,6 +57,7 @@ class HomeViewController: UIViewController {
     }
     
     //MARK: - Methods
+    
     private func configureHeaderView() {
         
         APICaller.shared.getPopularFilms { [weak self] result in
@@ -194,6 +195,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - CollectionViewTableViewCellDelegate
+
 extension HomeViewController: CollectionViewTableViewCellDelegate {
     
     func collectionViewCellDidTapCell(_ cell: PosterCollectionViewTableViewCell, with item: Item) {
@@ -222,6 +224,7 @@ extension HomeViewController: CollectionViewTableViewCellDelegate {
 }
 
 //MARK: - PlayButtonTappedDelegate
+
 extension HomeViewController: PlayButtonTappedDelegate {
     
     func playButtonTappedWithDelegate(with item: Item) {

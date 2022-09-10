@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Constants for fetching the data
+//MARK: - Constants for fetching the data
 
 struct Constants {
     static let API_KEY = "b01710ad-848a-4472-b8b6-b821582511fc"
@@ -47,6 +47,7 @@ class APICaller {
     
     // MARK: - Methods
     // MARK: - getAwaitFilms
+    
     func getAwaitFilms(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.awaitFilms) else { return }

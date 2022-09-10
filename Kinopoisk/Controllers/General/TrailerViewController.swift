@@ -42,15 +42,15 @@ class TrailerViewController: UIViewController {
     private func setConstrains() {
         
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15).isActive = true
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
-            webView.heightAnchor.constraint(equalToConstant: 300).isActive = true
-       
-            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
-            nameLabel.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 15).isActive = true
-            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        webView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15).isActive = true
+        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        webView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        
+        nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 15).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
     }
-   
+    
     func configure(with movieName: String, youtubeVideo: VideoElements) {
         
         nameLabel.text = movieName
