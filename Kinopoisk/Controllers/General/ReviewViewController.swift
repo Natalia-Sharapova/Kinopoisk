@@ -31,7 +31,7 @@ class ReviewViewController: UIViewController {
     }()
     
     private let nameLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 20), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
-    private let reviewLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 20), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let reviewLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 20), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     private let dateLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
     
     private lazy var nameStackView = UIStackView(axis: .vertical, distribution: .fill, alignment: .leading, spacing: 5)
@@ -41,7 +41,7 @@ class ReviewViewController: UIViewController {
     private let negativeLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 15), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
    
     private let titleLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 25), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
-    private let descriptionLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    private let descriptionLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     private let ratingLabel = UILabel(textColor: .white, font: .systemFont(ofSize: 14), cornerRadius: 4, numberOfLines: 0, textAlignment: .center)
         
     private let cancelButton = UIButton(title: "", cornerRadius: 12.5, backgroundColor: .lightGray, titleColor: .blue)

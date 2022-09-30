@@ -36,12 +36,12 @@ class StretchyTableHeaderView: UIView {
     
     // Labels
     public let nameLabel = UILabel(textColor: .white, font: .boldSystemFont(ofSize: 30), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
-    public let ratingLabel = UILabel(textColor: .systemRed, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
+    public let ratingLabel = UILabel(textColor: .systemRed, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     public let originalNameLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     public let genreLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
-    public let seasonsLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
+    public let seasonsLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
     public let countryLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
-    public let filmLengthLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    public let filmLengthLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     public let ageLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     
     // StackViews
@@ -68,13 +68,13 @@ class StretchyTableHeaderView: UIView {
         addSubview(buttonsStackView)
         buttonsStackView.addArrangedSubview(playButton)
         buttonsStackView.addArrangedSubview(downloadButton)
-        ratingStackView.addArrangedSubview(ratingLabel)
         ratingStackView.addArrangedSubview(originalNameLabel)
+        ratingStackView.addArrangedSubview(ratingLabel)
         genreStackView.addArrangedSubview(genreLabel)
         genreStackView.addArrangedSubview(seasonsLabel)
         countryStackView.addArrangedSubview(countryLabel)
-        countryStackView.addArrangedSubview(filmLengthLabel)
         countryStackView.addArrangedSubview(ageLabel)
+        countryStackView.addArrangedSubview(filmLengthLabel)
         setViewConstraints()
         
         downloadButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
@@ -89,6 +89,8 @@ class StretchyTableHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    // MARK: - Methods
     
     private func addGradient() {
         let gradientLayer = CAGradientLayer()
@@ -141,7 +143,7 @@ class StretchyTableHeaderView: UIView {
         
         genreStackView.bottomAnchor.constraint(equalTo: ratingStackView.bottomAnchor, constant: 20),
         genreStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-        genreStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 400),
+        genreStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 600),
         genreStackView.heightAnchor.constraint(equalToConstant: 25),
         
         countryStackView.bottomAnchor.constraint(equalTo: genreStackView.bottomAnchor, constant: 20),
@@ -196,6 +198,7 @@ class StretchyTableHeaderView: UIView {
         
         countryLabel.translatesAutoresizingMaskIntoConstraints = true
         filmLengthLabel.translatesAutoresizingMaskIntoConstraints = true
+        filmLengthLabel.sizeToFit()
         ageLabel.translatesAutoresizingMaskIntoConstraints = true
         heroImageView.clipsToBounds = true
         
@@ -218,7 +221,7 @@ class StretchyTableHeaderView: UIView {
               let countries = item.countries else { return }
         
         if let filmLenth = item.filmLength {
-            filmLengthLabel.text = String(filmLenth) + " мин,"
+            filmLengthLabel.text = String(filmLenth) + " мин"
         } else {
             filmLengthLabel.text = "-"
         }
@@ -325,7 +328,7 @@ class StretchyTableHeaderView: UIView {
         if let age = item.ratingAgeLimits {
             ageLabel.text = age
         } else {
-            ageLabel.text = "Нет данных о возрасте"
+            ageLabel.text = "Нет данных о возрасте,"
         }
     }
     

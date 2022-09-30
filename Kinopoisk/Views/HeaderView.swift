@@ -24,7 +24,11 @@ class HeaderView: UIView {
         super.init(frame: frame)
         
         heroImageView.clipsToBounds = true
-        downloadButton.setImage(UIImage(named: "save"), for: .normal)
+        
+        var image = UIImage(named: "save")
+        image = image?.withRenderingMode(.alwaysOriginal)
+        
+        downloadButton.setImage(image, for: .normal)
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.translatesAutoresizingMaskIntoConstraints = false
         

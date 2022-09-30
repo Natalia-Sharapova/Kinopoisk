@@ -285,6 +285,7 @@ extension PreviewViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: - Extensions
 //MARK: - ReviewCollectionViewTableViewCellDelegate
+
 extension PreviewViewController: ReviewCollectionViewTableViewCellDelegate {
     
     func collectionViewCellDidTapCell(_ cell: ReviewCollectionViewTableViewCell, with review: VideoReview) {
@@ -299,6 +300,7 @@ extension PreviewViewController: ReviewCollectionViewTableViewCellDelegate {
 }
 
 //MARK: - ActorCollectionViewTableViewCellDelegate
+
 extension PreviewViewController: ActorCollectionViewTableViewCellDelegate {
     
     func actorCollectionViewCellDidTapCell(_ cell: ActorCollectionViewTableViewCell, with personId: Int) {

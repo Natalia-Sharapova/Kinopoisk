@@ -10,8 +10,8 @@ import Foundation
 //MARK: - Constants for fetching the data
 
 struct Constants {
-    static let API_KEY = "b01710ad-848a-4472-b8b6-b821582511fc"
-    //static let API_KEY = "85a6a5c9-9d41-4a0b-a030-303174742d57"
+   // static let API_KEY = "b01710ad-848a-4472-b8b6-b821582511fc"
+   static let API_KEY = "85a6a5c9-9d41-4a0b-a030-303174742d57"
     // static let API_KEY = "4237f1d2-3253-48c4-a9e1-4a09cfc8c39a"
     // static let API_KEY = "2f733ac4-cf57-45e1-b106-479b0ecf6fad"
     static let baseURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films"
