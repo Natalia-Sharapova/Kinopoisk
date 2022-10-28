@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrailerCollectionViewTableViewCell: UITableViewCell {
+final class TrailerCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     

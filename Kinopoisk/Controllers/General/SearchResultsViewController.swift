@@ -13,7 +13,7 @@ protocol SearchResultsViewControllerDelegate: AnyObject {
     func searchResultsViewControllerDidTapItem(with item: Item)
 }
 
-class SearchResultsViewController: UIViewController {
+final class SearchResultsViewController: UIViewController {
     
     // MARK: - Properties
     

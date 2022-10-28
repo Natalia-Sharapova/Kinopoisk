@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Sections: Int {
+private enum Sections: Int {
     
     case Premiers = 0
     case AwaitFilms = 1
@@ -17,7 +17,7 @@ enum Sections: Int {
     
 }
 
-class MediaViewController: UIViewController {
+final class MediaViewController: UIViewController {
     
     //MARK: - Properties
     
@@ -28,7 +28,7 @@ class MediaViewController: UIViewController {
         return tableView
     }()
     
-    let sectionTitles: [String] = ["Кинопремьеры", "Скоро", "Тв-шоу", "Турецкие сериалы", "Корейские сериалы"]
+    private let sectionTitles: [String] = ["Кинопремьеры", "Скоро", "Тв-шоу", "Турецкие сериалы", "Корейские сериалы"]
     
     //MARK: - ViewController methods
     

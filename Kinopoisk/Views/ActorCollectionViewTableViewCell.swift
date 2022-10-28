@@ -14,7 +14,7 @@ protocol ActorCollectionViewTableViewCellDelegate: AnyObject {
     func actorCollectionViewCellDidTapCell(_ cell: ActorCollectionViewTableViewCell, with personId: Int)
 }
 
-class ActorCollectionViewTableViewCell: UITableViewCell {
+final class ActorCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     

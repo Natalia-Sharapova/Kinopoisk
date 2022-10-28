@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class TrailerCollectionViewCell: UICollectionViewCell {
+final class TrailerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     

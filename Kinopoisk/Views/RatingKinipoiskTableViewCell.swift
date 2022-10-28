@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RatingKinipoiskTableViewCell: UITableViewCell {
+final class RatingKinipoiskTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     

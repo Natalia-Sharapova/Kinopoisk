@@ -14,7 +14,7 @@ protocol CollectionViewTableViewCellDelegate: AnyObject {
     func collectionViewCellDidTapCell(_ cell: PosterCollectionViewTableViewCell, with item: Item)
 }
 
-class PosterCollectionViewTableViewCell: UITableViewCell {
+final class PosterCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     

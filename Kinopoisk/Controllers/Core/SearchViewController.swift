@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
-    enum Sections: Int {
+   private enum Sections: Int {
         case Random = 0
         case Films2022 = 1
         case Serials2022 = 2
@@ -20,32 +20,41 @@ class SearchViewController: UIViewController {
     private let searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(PosterCollectionViewTableViewCell.self, forCellReuseIdentifier: Identifier.posterCollectionViewTableViewCell.rawValue)
-        
         return tableView
     }()
     
     private let searchController: UISearchController = {
-        
         let controller = UISearchController(searchResultsController: SearchResultsViewController())
         controller.searchBar.placeholder = "Поиск по фильмам"
         controller.searchBar.searchBarStyle = .minimal
         return controller
     }()
     
-    let sectionTitles: [String] = ["Случайный выбор", "Фильмы 2022 года", "Сериалы 2022 года"]
+    private let sectionTitles: [String] = ["Случайный выбор", "Фильмы 2022 года", "Сериалы 2022 года"]
     
     //MARK: - ViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         
+        view.backgroundColor = .systemBackground
         view.addSubview(searchTableView)
         
         searchTableView.dataSource = self
         searchTableView.delegate = self
         
         title = "Search"
+        
+        configureControllers()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        searchTableView.frame = view.bounds
+    }
+    
+    private func configureControllers() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
@@ -53,12 +62,6 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         
         searchController.searchResultsUpdater = self
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        searchTableView.frame = view.bounds
     }
 }
 

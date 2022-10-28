@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class TrailerViewController: UIViewController {
+final class TrailerViewController: UIViewController {
     
     //MARK: - Properties
     

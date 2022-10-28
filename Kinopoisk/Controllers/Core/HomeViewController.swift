@@ -7,9 +7,9 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
-    enum Sections: Int {
+   private enum Sections: Int {
         case TopBestFilms = 0
         case TopPopularFilms = 1
         case RecomendedSeries = 2
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     //MARK: - Properties
     
     private var randomPopularMovie: Item?
-    var headerView: HeaderView?
+    private var headerView: HeaderView?
     
     private let homeTableView: UITableView = {
         
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         return tableView
     }()
     
-    let sectionTitles: [String] = ["ТОП-20 лучших фильмов", "ТОП-20 популярных фильмов", "Рекомендуемые сериалы", "Ужасы", "Детективы"]
+   private let sectionTitles: [String] = ["ТОП-20 лучших фильмов", "ТОП-20 популярных фильмов", "Рекомендуемые сериалы", "Ужасы", "Детективы"]
     
     
     //MARK: - ViewController methods

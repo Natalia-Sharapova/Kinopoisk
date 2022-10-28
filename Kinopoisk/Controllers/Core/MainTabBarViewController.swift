@@ -7,17 +7,17 @@
 
 import UIKit
 
-class MainTabBarViewController: UITabBarController {
+final class MainTabBarViewController: UITabBarController {
     
     //MARK: - ViewController methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let vc1 = UINavigationController(rootViewController: HomeViewController())
-        let vc2 = UINavigationController(rootViewController: MediaViewController())
-        let vc3 = UINavigationController(rootViewController: SearchViewController())
-        let vc4 = UINavigationController(rootViewController: DownloadsViewController())
+         let vc1 = UINavigationController(rootViewController: HomeViewController())
+         let vc2 = UINavigationController(rootViewController: MediaViewController())
+         let vc3 = UINavigationController(rootViewController: SearchViewController())
+         let vc4 = UINavigationController(rootViewController: DownloadsViewController())
         
         
         vc1.tabBarItem.image = UIImage(systemName: "house")

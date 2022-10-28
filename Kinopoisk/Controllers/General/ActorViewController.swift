@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class ActorViewController: UIViewController {
+final class ActorViewController: UIViewController {
     
     //MARK: - Properties
     

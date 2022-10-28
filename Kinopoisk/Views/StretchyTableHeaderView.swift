@@ -14,7 +14,7 @@ protocol PlayButtonTappedDelegate: AnyObject {
     func playButtonTappedWithDelegate(with item: Item)
 }
 
-class StretchyTableHeaderView: UIView {
+final class StretchyTableHeaderView: UIView {
     
     // MARK: - Properties
     
@@ -39,7 +39,7 @@ class StretchyTableHeaderView: UIView {
     public let ratingLabel = UILabel(textColor: .systemRed, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     public let originalNameLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 14), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     public let genreLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
-    public let seasonsLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .center)
+    public let seasonsLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     public let countryLabel = UILabel(textColor: .systemGray, font: .systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .right)
     public let filmLengthLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
     public let ageLabel = UILabel(textColor: .systemGray, font: UIFont.systemFont(ofSize: 12), cornerRadius: 0, numberOfLines: 0, textAlignment: .left)
@@ -48,7 +48,7 @@ class StretchyTableHeaderView: UIView {
     public let buttonsStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 20)
     public let countryStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
     public let ratingStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
-    public let genreStackView = UIStackView(axis: .horizontal, distribution: .fill, alignment: .center, spacing: 5)
+    public let genreStackView = UIStackView(axis: .horizontal, distribution: .fillEqually, alignment: .center, spacing: 5)
     
     // ImageView
     public let heroImageView = UIImageView(contentMode: .scaleAspectFill, cornerRadius: 0)
@@ -75,9 +75,9 @@ class StretchyTableHeaderView: UIView {
         countryStackView.addArrangedSubview(countryLabel)
         countryStackView.addArrangedSubview(ageLabel)
         countryStackView.addArrangedSubview(filmLengthLabel)
-        setViewConstraints()
         
-        downloadButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
+        setViewConstraints()
+        configureDownloadButton()
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("Deleted"), object: nil, queue: nil) { [weak self] _ in
             self?.downloadButton.backgroundColor = .systemGray
@@ -102,6 +102,15 @@ class StretchyTableHeaderView: UIView {
         
         gradientLayer.frame = bounds
         layer.addSublayer(gradientLayer)
+    }
+    
+    private func configureDownloadButton() {
+        
+        var image = UIImage(named: "save")
+        image = image?.withRenderingMode(.alwaysOriginal)
+        
+        downloadButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
+        downloadButton.setImage(image, for: .normal)
     }
     
     @objc func downloadButtonTapped() {
@@ -183,8 +192,7 @@ class StretchyTableHeaderView: UIView {
         imageViewHeight.isActive = true
     }
     
-    func setItems() {
-        downloadButton.setImage(UIImage(named: "save"), for: .normal)
+   private func setItems() {
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         

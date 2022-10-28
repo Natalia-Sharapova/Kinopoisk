@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DownloadsViewController: UIViewController {
+final class DownloadsViewController: UIViewController {
     
     //MARK: - Properties
     
@@ -32,7 +32,7 @@ class DownloadsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        // Fetch the data from database
+        // Fetch the data from the database
         fetchLocalStorageFromDownload()
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("Downloaded"), object: nil, queue: nil) { _ in

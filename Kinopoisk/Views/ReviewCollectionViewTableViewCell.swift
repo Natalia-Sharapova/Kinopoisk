@@ -14,7 +14,7 @@ protocol ReviewCollectionViewTableViewCellDelegate: AnyObject {
     func collectionViewCellDidTapCell(_ cell: ReviewCollectionViewTableViewCell, with review: VideoReview)
 }
 
-class ReviewCollectionViewTableViewCell: UITableViewCell {
+final class ReviewCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     

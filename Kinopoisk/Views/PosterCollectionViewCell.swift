@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class PosterCollectionViewCell: UICollectionViewCell {
+final class PosterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Propeties
     

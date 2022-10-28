@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class HeaderView: UIView {
+final class HeaderView: UIView {
     
     // MARK: - Properties
     

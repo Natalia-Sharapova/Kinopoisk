@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-enum Identifier: String {
+public enum Identifier: String {
     
     case actorCollectionViewCell
     case actorCollectionViewTableViewCell
@@ -25,7 +25,7 @@ enum Identifier: String {
     case movieTableViewCell
 }
 
-class ActorCollectionViewCell: UICollectionViewCell {
+final class ActorCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
@@ -68,7 +68,7 @@ class ActorCollectionViewCell: UICollectionViewCell {
         nameEnLabel.frame = CGRect(x: 65, y: 55, width: 150, height: 20)
     }
     
-    func configure(with actor: Actors) {
+   public func configure(with actor: Actors) {
         guard let urlString = actor.posterUrl else { return }
         guard let url = URL(string: urlString) else { return }
         guard let nameRu = actor.nameRu, let nameEn = actor.nameEn else { return }

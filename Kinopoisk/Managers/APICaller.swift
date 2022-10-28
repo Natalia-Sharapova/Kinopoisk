@@ -7,38 +7,11 @@
 
 import Foundation
 
-//MARK: - Constants for fetching the data
-
-struct Constants {
-   // static let API_KEY = "b01710ad-848a-4472-b8b6-b821582511fc"
-   static let API_KEY = "85a6a5c9-9d41-4a0b-a030-303174742d57"
-    // static let API_KEY = "4237f1d2-3253-48c4-a9e1-4a09cfc8c39a"
-    // static let API_KEY = "2f733ac4-cf57-45e1-b106-479b0ecf6fad"
-    static let baseURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films"
-    static let YoutubeAPI_KEY = "AIzaSyA2pGulH8anGCS6PRioYhOMeavrC2Qc3DE"
-    static let YoutubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?"
-    static let premiers = "/premieres?year=2022&month=MAY"
-    static let bestFilms = "/top?type=TOP_250_BEST_FILMS&page=1"
-    static let popularFilms = "/top?type=TOP_100_POPULAR_FILMS&page=1"
-    static let bestTvSeries = "?order=NUM_VOTE&type=TV_SERIES&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
-    static let awaitFilms = "/top?type=TOP_AWAIT_FILMS&page=1"
-    static let horrors = "?genres=17&order=NUM_VOTE&type=FILM&ratingFrom=0&ratingTo=10&page=1"
-    static let detectives = "?genres=5&order=NUM_VOTE&type=FILM&ratingFrom=0&ratingTo=10&page=1"
-    static let tvShow = "?order=RATING&type=TV_SHOW&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
-    static let random = "?order=RATING&type=ALL&ratingFrom=0&ratingTo=10&page=1"
-    static let films2022 = "?order=RATING&type=FILM&ratingFrom=0&ratingTo=10&yearFrom=2022&yearTo=2022&page=1"
-    static let serials2022 = "?order=RATING&type=TV_SERIES&ratingFrom=0&ratingTo=10&yearFrom=2022&yearTo=2022&page=1"
-    static let turkishSerials = "?countries=44&order=RATING&type=TV_SERIES&ratingFrom=0&ratingTo=10&page=1"
-    static let koreanSerials = "?countries=49&order=RATING&type=TV_SERIES&ratingFrom=0&ratingTo=10&page=1"
-    static let actorsURL = "https://kinopoiskapiunofficial.tech/api/v1/staff?filmId"
-    static let actorInformation = "https://kinopoiskapiunofficial.tech/api/v1/staff"
-}
-
 enum APIError: Error {
     case failedToGetData
 }
 
-class APICaller {
+final class APICaller {
     
     // MARK: - Properties
     static let shared = APICaller()
@@ -48,7 +21,7 @@ class APICaller {
     // MARK: - Methods
     // MARK: - getAwaitFilms
     
-    func getAwaitFilms(completion: @escaping (Result<[Item], Error>) -> Void) {
+   public func getAwaitFilms(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.awaitFilms) else { return }
         
@@ -72,7 +45,7 @@ class APICaller {
     }
     
     // MARK: - getBestFilms
-    func getBestFilms(completion: @escaping (Result<[Item], Error>) -> Void) {
+   public func getBestFilms(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.bestFilms) else { return }
         
@@ -96,7 +69,7 @@ class APICaller {
     }
     
     // MARK: - getBestTvSeries
-    func getBestTvSeries(completion: @escaping(Result<[Item], Error>) -> Void) {
+    public func getBestTvSeries(completion: @escaping(Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.bestTvSeries) else { return }
         
@@ -119,7 +92,7 @@ class APICaller {
     }
     
     // MARK: - getHorrors
-    func getHorrors(completion: @escaping(Result<[Item], Error>) -> Void) {
+    public func getHorrors(completion: @escaping(Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.horrors) else { return }
         
@@ -143,7 +116,7 @@ class APICaller {
     }
     
     // MARK: - getDetectives
-    func getDetectives(completion: @escaping(Result<[Item], Error>) -> Void) {
+    public func getDetectives(completion: @escaping(Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.detectives) else { return }
         
@@ -166,7 +139,7 @@ class APICaller {
     }
     
     // MARK: - getPremiers
-    func getPremiers(completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func getPremiers(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.premiers) else { return }
         
@@ -190,7 +163,7 @@ class APICaller {
     }
     
     // MARK: - getPopularFilms
-    func getPopularFilms(completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func getPopularFilms(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.popularFilms) else { return }
         
@@ -214,7 +187,7 @@ class APICaller {
     }
     
     // MARK: - getTvShow
-    func getTvShow(completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func getTvShow(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.tvShow) else { return }
         
@@ -239,7 +212,7 @@ class APICaller {
     }
     
     // MARK: - getRandom
-    func getRandom(completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func getRandom(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.random) else { return }
         
@@ -264,7 +237,7 @@ class APICaller {
     }
     
     // MARK: - getFilms2022
-    func getFilms2022(completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func getFilms2022(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.films2022) else { return }
         
@@ -288,7 +261,7 @@ class APICaller {
     }
     
     // MARK: - getSerials2022
-    func getSerials2022(completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func getSerials2022(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.serials2022) else { return }
         
@@ -314,7 +287,7 @@ class APICaller {
     }
     
     // MARK: - getTurkishSerials
-    func getTurkishSerials(completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func getTurkishSerials(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.turkishSerials) else { return }
         
@@ -340,7 +313,7 @@ class APICaller {
     }
     
     // MARK: - getKoreanSerials
-    func getKoreanSerials(completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func getKoreanSerials(completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + Constants.koreanSerials) else { return }
         
@@ -366,7 +339,7 @@ class APICaller {
     }
     
     // MARK: - search
-    func search(with query: String, completion: @escaping (Result<[Item], Error>) -> Void) {
+    public func search(with query: String, completion: @escaping (Result<[Item], Error>) -> Void) {
         
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         
@@ -393,7 +366,7 @@ class APICaller {
     }
     
     // MARK: - getTrailer
-    func getTrailer(with query: String, completion: @escaping (Result<VideoElements, Error>) -> Void) {
+    public func getTrailer(with query: String, completion: @escaping (Result<VideoElements, Error>) -> Void) {
         
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         
@@ -418,7 +391,7 @@ class APICaller {
     }
     
     // MARK: - getSerialSeasonEpisode
-    func getSerialSeasonEpisode(with id: Int, completion: @escaping (Result<SerialResponse, Error>) -> Void) {
+    public func getSerialSeasonEpisode(with id: Int, completion: @escaping (Result<SerialResponse, Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + "/\(id)/seasons") else { return }
         
@@ -444,7 +417,7 @@ class APICaller {
     }
     
     // MARK: - getVideo
-    func getVideo(with id: Int, completion: @escaping (Result<[VideoKinopoisk], Error>) -> Void) {
+    public func getVideo(with id: Int, completion: @escaping (Result<[VideoKinopoisk], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + "/\(id)/videos") else { return }
         
@@ -470,7 +443,7 @@ class APICaller {
     }
     
     // MARK: - getActors
-    func getActors(with id: Int, completion: @escaping (Result<[Actors], Error>) -> Void) {
+    public func getActors(with id: Int, completion: @escaping (Result<[Actors], Error>) -> Void) {
         
         guard let url = URL(string: Constants.actorsURL + "=\(id)") else { return }
         
@@ -494,7 +467,7 @@ class APICaller {
     }
     
     // MARK: - getActorInformation
-    func getActorInformation(with personId: Int, completion: @escaping (Result<ActorInformation, Error>) -> Void) {
+    public func getActorInformation(with personId: Int, completion: @escaping (Result<ActorInformation, Error>) -> Void) {
         
         guard let url = URL(string: Constants.actorInformation + "/\(personId)") else { return }
         
@@ -516,7 +489,7 @@ class APICaller {
     }
     
     // MARK: - getImages
-    func getImages(with id: Int, completion: @escaping (Result<[VideoImages], Error>) -> Void) {
+    public func getImages(with id: Int, completion: @escaping (Result<[VideoImages], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + "/\(id)/images?type=STILL&page=1") else { return }
         
@@ -539,7 +512,7 @@ class APICaller {
     }
     
     // MARK: - getReviews
-    func getReviews(with id: Int, completion: @escaping (Result<[VideoReview], Error>) -> Void) {
+    public func getReviews(with id: Int, completion: @escaping (Result<[VideoReview], Error>) -> Void) {
         
         guard let url = URL(string: Constants.baseURL + "/\(id)/reviews?page=1&order=DATE_DESC") else { return }
         

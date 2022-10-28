@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PreviewViewController: UIViewController {
+final class PreviewViewController: UIViewController {
     
     enum Sections: Int {
         
@@ -21,8 +21,8 @@ class PreviewViewController: UIViewController {
     //MARK: - Properties
     
     private var item: Item!
-    var headerView: StretchyTableHeaderView?
-    var rowisHidden = false
+    private var headerView: StretchyTableHeaderView?
+    private var rowisHidden = false
     
     private let previewTableView: UITableView = {
         
@@ -35,7 +35,7 @@ class PreviewViewController: UIViewController {
         return tableView
     }()
     
-    let sectionTitles: [String] = ["Рейтинг Кинопоиска", "Трейлеры и тизеры", "Актеры", "Изображения", "Рецензии"]
+    private let sectionTitles: [String] = ["Рейтинг Кинопоиска", "Трейлеры и тизеры", "Актеры", "Изображения", "Рецензии"]
     
     //MARK: - ViewController methods
     

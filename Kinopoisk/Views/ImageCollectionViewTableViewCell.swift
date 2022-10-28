@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageCollectionViewTableViewCell: UITableViewCell {
+final class ImageCollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     

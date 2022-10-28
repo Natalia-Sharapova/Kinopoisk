@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MovieTableViewCell: UITableViewCell {
+final class MovieTableViewCell: UITableViewCell {
     
-    // MARK: - Propeties
+    // MARK: - Properties
     
     private let playButton: UIButton = {
         let button = UIButton()

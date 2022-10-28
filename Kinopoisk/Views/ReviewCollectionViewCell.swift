@@ -7,13 +7,13 @@
 
 import UIKit
 
-enum Rating: String {
+private enum Rating: String {
     case NEGATIVE
     case POSITIVE
     case NEUTRAL
 }
 
-class ReviewCollectionViewCell: UICollectionViewCell {
+final class ReviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     

@@ -7,14 +7,14 @@
 
 import UIKit
 
-enum RatingReview: String {
+private enum RatingReview: String {
     
     case NEGATIVE
     case POSITIVE
     case NEUTRAL
 }
 
-class ReviewViewController: UIViewController {
+final class ReviewViewController: UIViewController {
     
     // MARK: - Properties
     
